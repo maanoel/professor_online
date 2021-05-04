@@ -2,6 +2,8 @@ import { Meteor } from "meteor/meteor";
 
 import "/imports/api/classes/classesMethods";
 import "/imports/api/classes/classesPublications";
+import "/imports/api/schedules/schedulesMethods";
+import "/imports/api/schedules/schedulesPublications";
 
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";

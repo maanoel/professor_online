@@ -4,6 +4,9 @@ import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
+import { useTracker } from "meteor/react-meteor-data";
+
+import { ClassesCollection } from "../../../db/ClassesCollection";
 
 import "./styles.css";
 
@@ -14,23 +17,17 @@ const TeacherList = () => {
   const [week_day, setWeek_day] = useState("");
   const [time, setTime] = useState("");
 
-  async function searchTeachers(e) {
+  function searchTeachers(e) {
     e.preventDefault();
 
-    // const response = await api
-    //   .get("classes", {
-    //     params: {
-    //       subject,
-    //       week_day,
-    //       time,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     setTeachers(response.data);
-    //   })
-    //   .catch(() => {
-    //     alert("Algo deu errado ao processar a solicitação");
-    //   });
+    const handler = Meteor.subscribe("classes");
+
+    const classes = ClassesCollection.find({
+      subject: subject,
+      // week_day: week_day,
+      // time: time,
+    }).fetch();
+    setTeachers(classes);
   }
 
   return (

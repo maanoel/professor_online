@@ -6,7 +6,7 @@ Meteor.methods({
     //   throw new Meteor.Error("Not authorized.");
     // }
 
-    ClassesCollection.insert({
+    return ClassesCollection.insert({
       name: obj.name,
       avatar: obj.avatar,
       whatsapp: obj.whatsapp,

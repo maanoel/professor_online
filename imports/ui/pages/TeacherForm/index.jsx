@@ -45,33 +45,26 @@ const TeacherForm = () => {
     e.preventDefault();
     console.log(scheduleItems);
 
-    Meteor.call("classes.insert", {
-      name: name,
-      avatar: avatar,
-      whatsapp: whatsapp,
-      bio: bio,
-      subject: subject,
-      cost: Number(cost),
-    });
+    Meteor.call(
+      "classes.insert",
+      {
+        name: name,
+        avatar: avatar,
+        whatsapp: whatsapp,
+        bio: bio,
+        subject: subject,
+        cost: Number(cost),
+      },
+      (error, id) => {
+        if (error) {
+          alert(error);
+        } else {
+          scheduleItems.forEach((item) => (item.classeId = id));
+        }
+      }
+    );
 
-    // api
-    //   .post("classes", {
-    //     name,
-    //     avatar,
-    //     whatsapp,
-    //     bio,
-    //     subject,
-    //     cost: Number(cost),
-    //     schedule: scheduleItems,
-    //   })
-    //   .then(() => {
-    //     alert("Cadastro realizado com sucesso!");
-
-    //     history.push("/");
-    //   })
-    //   .catch((err) => {
-    //     alert("Ocorreu um erro!");
-    //   });
+    Meteor.call("schedules.insert", scheduleItems);
   }
 
   return (
