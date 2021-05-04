@@ -1,5 +1,8 @@
 import { Meteor } from "meteor/meteor";
 
+import "/imports/api/classes/classesMethods";
+import "/imports/api/classes/classesPublications";
+
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";
 

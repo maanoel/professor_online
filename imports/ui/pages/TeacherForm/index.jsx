@@ -7,7 +7,6 @@ import TextArea from "../../components/TextArea";
 import Select from "../../components/Select";
 
 import "./styles.css";
-// import api from "../../services/api";
 
 const TeacherForm = () => {
   const history = useHistory();
@@ -36,7 +35,6 @@ const TeacherForm = () => {
         };
       }
 
-      console.log(scheduleItem);
       return scheduleItem;
     });
 
@@ -45,6 +43,16 @@ const TeacherForm = () => {
 
   function handleCreateClass(e) {
     e.preventDefault();
+    console.log(scheduleItems);
+
+    Meteor.call("classes.insert", {
+      name: name,
+      avatar: avatar,
+      whatsapp: whatsapp,
+      bio: bio,
+      subject: subject,
+      cost: Number(cost),
+    });
 
     // api
     //   .post("classes", {
