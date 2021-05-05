@@ -1,16 +1,26 @@
-import React, { useState, FormEvent } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState } from "react";
 
 import PageHeader from "../../components/PageHeader";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
 import Select from "../../components/Select";
+import { useTracker } from "meteor/react-meteor-data";
+import { useHistory } from "react-router-dom";
 
 import "./styles.css";
 
 const TeacherForm = () => {
-  const history = useHistory();
+  useTracker(() => {
+    const userDoc = Meteor.user();
+    const loggingIn = Meteor.loggingIn();
 
+    if (!userDoc && !loggingIn) {
+      const history = useHistory();
+      setTimeout(() => history.push("login"), 0);
+    }
+  });
+
+  const history = useHistory();
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
