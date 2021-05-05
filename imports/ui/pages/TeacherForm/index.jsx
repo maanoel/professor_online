@@ -6,6 +6,7 @@ import TextArea from "../../components/TextArea";
 import Select from "../../components/Select";
 import { useTracker } from "meteor/react-meteor-data";
 import { useHistory } from "react-router-dom";
+import { Meteor } from "meteor/meteor";
 
 import "./styles.css";
 
@@ -13,7 +14,6 @@ const TeacherForm = () => {
   useTracker(() => {
     const userDoc = Meteor.user();
     const loggingIn = Meteor.loggingIn();
-
     if (!userDoc && !loggingIn) {
       const history = useHistory();
       setTimeout(() => history.push("login"), 0);

@@ -1,19 +1,32 @@
 import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
+import { useTracker } from "meteor/react-meteor-data";
+import { useHistory } from "react-router-dom";
 
 import "./styles.css";
+
 export const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
+    //https://preview.colorlib.com/theme/bootstrap/login-form-07/
+    Meteor.loginWithPassword(username, password, (err) => {
+      if (err) {
+        alert(err);
+      } else {
+        alert(1);
+        //TODO: Se for professor give classes se for alura professor lista..
 
-    Meteor.loginWithPassword(username, password);
+        const history = useHistory();
+        history.push("give-classes");
+      }
+    });
   };
 
   return (
-    <div className="loginForm">
+    <div className="content">
       <div className="container">
         <div className="row">
           <div className="col-md-6">
@@ -27,25 +40,25 @@ export const LoginForm = () => {
             <div className="row justify-content-center">
               <div className="col-md-8">
                 <div className="mb-4">
-                  <h3>Sign In</h3>
+                  <h3>Entrar</h3>
                   <p className="mb-4">
-                    Lorem ipsum dolor sit amet elit. Sapiente sit aut eos
-                    consectetur adipisicing.
+                    Aqui você poderá ter aulas com os melhores professores ou
+                    ensinar para os melhores alunos.
                   </p>
                 </div>
-                <form action="#" method="post">
+                <form onSubmit={submit} action="#" method="post">
                   <div className="form-group first">
-                    <label htmlFor="username">Username</label>
                     <input
                       type="text"
                       className="form-control"
                       id="username"
+                      placeholder="Usuário"
                       onChange={(e) => setUsername(e.target.value)}
                     />
                   </div>
                   <div className="form-group last mb-4">
-                    <label htmlFor="password">Password</label>
                     <input
+                      placeholder="Senha"
                       type="password"
                       className="form-control"
                       id="password"
@@ -60,13 +73,13 @@ export const LoginForm = () => {
                     </label>
                     <span className="ml-auto">
                       <a href="#" className="forgot-pass">
-                        Forgot Password
+                        Esqueci minha senha
                       </a>
                     </span>
                   </div>
                   <input
                     type="submit"
-                    value="Log In"
+                    value="Entrar"
                     className="btn btn-block btn-primary"
                   />
                   <span className="d-block text-left my-4 text-muted">
@@ -91,33 +104,4 @@ export const LoginForm = () => {
       </div>
     </div>
   );
-  // return (
-  //   <form onSubmit={submit} className="login-form">
-  //     <div>
-  //       <label htmlFor="username">Login</label>
-  //       <input
-  //         type="text"
-  //         placeholder="Username"
-  //         name="username"
-  //         required
-  //         onChange={(e) => setUsername(e.target.value)}
-  //       />
-  //     </div>
-
-  //     <div>
-  //       <label htmlFor="password">Senha</label>
-
-  //       <input
-  //         type="password"
-  //         placeholder="Password"
-  //         name="password"
-  //         required
-  //         onChange={(e) => setPassword(e.target.value)}
-  //       />
-  //     </div>
-  //     <div>
-  //       <button type="submit">Log In</button>
-  //     </div>
-  //   </form>
-  // );
 };

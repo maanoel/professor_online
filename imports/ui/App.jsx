@@ -17,6 +17,7 @@ export const App = () => {
           </div>
 
           <p>BEM VINDO</p>
+          <Routes />
         </Fragment>
       ) : (
         <Routes />
