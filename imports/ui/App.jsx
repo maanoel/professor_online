@@ -20,7 +20,9 @@ export const App = () => {
           <Routes />
         </Fragment>
       ) : (
-        <Routes />
+        <Fragment>
+          <Routes />
+        </Fragment>
       )}
     </div>
   );

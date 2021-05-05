@@ -4,11 +4,11 @@ import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
-import { useTracker } from "meteor/react-meteor-data";
 
 import { ClassesCollection } from "../../../db/ClassesCollection";
 
 import "./styles.css";
+import Chat from "../../components/Chat";
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
@@ -74,7 +74,7 @@ const TeacherList = () => {
           <button type="submit">Buscar</button>
         </form>
       </PageHeader>
-
+      <Chat />
       <main>
         {teachers.map((teacher) => (
           <TeacherItem key={teacher.id} teacher={teacher} />

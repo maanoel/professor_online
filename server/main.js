@@ -4,6 +4,8 @@ import "/imports/api/classes/classesMethods";
 import "/imports/api/classes/classesPublications";
 import "/imports/api/schedules/schedulesMethods";
 import "/imports/api/schedules/schedulesPublications";
+import "/imports/api/chatmessage/chatMessageMethods";
+import "/imports/api/chatmessage/chatMessagePublications";
 
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";
