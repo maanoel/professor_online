@@ -6,12 +6,18 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 
 export const LoginForm = () => {
+  //https://preview.colorlib.com/theme/bootstrap/login-form-07/
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const history = useHistory();
+
+  const goToNewUserPage = (e) => {
+    history.push("new-user");
+  };
 
   const submit = (e) => {
     e.preventDefault();
-    //https://preview.colorlib.com/theme/bootstrap/login-form-07/
     Meteor.loginWithPassword(username, password, (err) => {
       if (err) {
         alert(err);
@@ -19,7 +25,6 @@ export const LoginForm = () => {
         alert(1);
         //TODO: Se for professor give classes se for alura professor lista..
 
-        const history = useHistory();
         history.push("give-classes");
       }
     });
@@ -67,11 +72,19 @@ export const LoginForm = () => {
                   </div>
                   <div className="d-flex mb-5 align-items-center">
                     <label className="control control--checkbox mb-0">
-                      <span className="caption">Remember me</span>
+                      <span className="caption">Lemberar senha</span>
                       <input type="checkbox" />
                       <div className="control__indicator"></div>
                     </label>
                     <span className="ml-auto">
+                      <a
+                        href="#"
+                        className="forgot-pass"
+                        onClick={() => goToNewUserPage()}
+                      >
+                        Criar uma conta
+                      </a>
+                      <br />
                       <a href="#" className="forgot-pass">
                         Esqueci minha senha
                       </a>
@@ -83,7 +96,7 @@ export const LoginForm = () => {
                     className="btn btn-block btn-primary"
                   />
                   <span className="d-block text-left my-4 text-muted">
-                    — or login with —
+                    — ou entrar com —
                   </span>
                   <div className="social-login">
                     <a href="#" className="facebook">

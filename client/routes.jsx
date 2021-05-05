@@ -4,6 +4,7 @@ import Landing from "../imports/ui/pages/Landing/Landing";
 import TeacherList from "../imports/ui/pages/TeacherList";
 import TeacherForm from "../imports/ui/pages/TeacherForm";
 import { LoginForm } from "../imports/ui/pages/Login/LoginForm";
+import NewUserForm from "../imports/ui/pages/NewUserForm";
 
 const Routes = () => {
   return (
@@ -12,6 +13,7 @@ const Routes = () => {
       <Route path="/login" exact component={LoginForm} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
+      <Route path="/new-user" component={NewUserForm} />
     </BrowserRouter>
   );
 };

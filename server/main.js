@@ -6,6 +6,7 @@ import "/imports/api/schedules/schedulesMethods";
 import "/imports/api/schedules/schedulesPublications";
 import "/imports/api/chatmessage/chatMessageMethods";
 import "/imports/api/chatmessage/chatMessagePublications";
+import "/imports/api/login/loginMethods";
 
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";
