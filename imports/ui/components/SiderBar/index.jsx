@@ -3,17 +3,23 @@ import React, { useState, Fragment } from "react";
 import "./styles.css";
 import { MenuSvg } from "./svg/menu";
 
-let showSider = true;
 const SiderBar = () => {
+  const [showSide, setShowSide] = useState(true);
+
   return (
     <div className="main">
-      {showSider ? (
+      {showSide ? (
         <Fragment>
           <nav id="sidebar">
             <div className="sidebar-header">
               <h3>
-                Lista de opções{" "}
-                <span className="sidebar-menu-svg-close">{MenuSvg}</span>
+                Lista de opções
+                <span
+                  className="sidebar-menu-svg-close"
+                  onClick={() => setShowSide(false)}
+                >
+                  {MenuSvg}
+                </span>
               </h3>
             </div>
 
