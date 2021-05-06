@@ -9,6 +9,7 @@ import { ClassesCollection } from "../../../db/ClassesCollection";
 
 import "./styles.css";
 import Chat from "../../components/Chat";
+import SiderBar from "../../components/SiderBar";
 
 const TeacherList = () => {
   const [teachers, setTeachers] = useState([]);
@@ -32,6 +33,7 @@ const TeacherList = () => {
 
   return (
     <div id="page-teacher-list" className="contaienr">
+      <SiderBar />
       <PageHeader title="Estes são os Proffys disponívies.">
         <form onSubmit={searchTeachers} id="search-teachers">
           <Select
