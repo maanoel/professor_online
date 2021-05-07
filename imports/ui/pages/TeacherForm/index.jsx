@@ -11,16 +11,17 @@ import { Meteor } from "meteor/meteor";
 import "./styles.css";
 
 const TeacherForm = () => {
+  const history = useHistory();
+
   useTracker(() => {
     const userDoc = Meteor.user();
     const loggingIn = Meteor.loggingIn();
+
     if (!userDoc && !loggingIn) {
-      const history = useHistory();
-      setTimeout(() => history.push("login"), 0);
+      history.push("login");
     }
   });
 
-  const history = useHistory();
   const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
@@ -53,7 +54,6 @@ const TeacherForm = () => {
 
   function handleCreateClass(e) {
     e.preventDefault();
-    console.log(scheduleItems);
 
     Meteor.call(
       "classes.insert",
@@ -74,7 +74,9 @@ const TeacherForm = () => {
       }
     );
 
-    Meteor.call("schedules.insert", scheduleItems);
+    Meteor.call("schedules.insert", scheduleItems, (error, id) => {
+      history.push("study");
+    });
   }
 
   return (

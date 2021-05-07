@@ -4,8 +4,10 @@ import { ChatMessageCollection } from "../../../db/ChatMessageCollection";
 
 import "./styles.css";
 
-const Chat = () => {
+const Chat = ({ closeChat }) => {
   const [message, setMessage] = useState("");
+  const [showChat, setShowChat] = useState(true);
+
   let messages = "";
   useTracker(() => {
     Meteor.subscribe("chatmessages");

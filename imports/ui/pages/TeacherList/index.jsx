@@ -4,6 +4,7 @@ import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
+import { useTracker } from "meteor/react-meteor-data";
 
 import { ClassesCollection } from "../../../db/ClassesCollection";
 
@@ -12,23 +13,33 @@ import Chat from "../../components/Chat";
 import SiderBar from "../../components/SiderBar";
 
 const TeacherList = () => {
-  const [teachers, setTeachers] = useState([]);
+  let classes = [];
+  const [teachers, setTeachers] = useState(classes);
+
+  useTracker(() => {
+    Meteor.subscribe("classes");
+    classes = ClassesCollection.find({}).fetch();
+    setTimeout(() => {
+      setTeachers(classes);
+    }, 0);
+  });
 
   const [subject, setSubject] = useState("");
   const [week_day, setWeek_day] = useState("");
   const [time, setTime] = useState("");
+  const [showChat, setShowChat] = useState(false);
 
   function searchTeachers(e) {
     e.preventDefault();
-
-    const handler = Meteor.subscribe("classes");
-
-    const classes = ClassesCollection.find({
-      subject: subject,
-      // week_day: week_day,
-      // time: time,
-    }).fetch();
     setTeachers(classes);
+  }
+
+  function closeChat() {
+    setShowChat(!showChat);
+  }
+
+  function handlerClickChat() {
+    setShowChat(true);
   }
 
   return (
@@ -76,10 +87,14 @@ const TeacherList = () => {
           <button type="submit">Buscar</button>
         </form>
       </PageHeader>
-      <Chat />
+      {showChat ? <Chat closeChat={closeChat} /> : ""}
       <main>
         {teachers.map((teacher) => (
-          <TeacherItem key={teacher.id} teacher={teacher} />
+          <TeacherItem
+            key={teacher.id}
+            teacher={teacher}
+            onClick={handlerClickChat}
+          />
         ))}
       </main>
     </div>

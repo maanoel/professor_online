@@ -1,10 +1,7 @@
 import React from "react";
-
 import "./styles.css";
 
-const TeacherItem = ({ teacher }) => {
-  function handleCreateNewConnection() {}
-
+const TeacherItem = ({ teacher, onClick }) => {
   return (
     <article className="teacher-item">
       <header>
@@ -22,13 +19,9 @@ const TeacherItem = ({ teacher }) => {
           Preço/hora
           <strong>R$ {teacher.cost}</strong>
         </p>
-        <a
-          onClick={handleCreateNewConnection}
-          href={`https://wa.me/${teacher.whatsapp}`}
-          target="_blank"
-        >
-          <img src="https://i.ibb.co/3yRqZd4/whatsapp.png" alt="Whatsapp" />
-          Entrar em contato
+        <a onClick={onClick} href="#">
+          <img src="https://i.ibb.co/3yRqZd4/whatsapp.png" alt="Chat" />
+          Iniciar uma conversa
         </a>
       </footer>
     </article>

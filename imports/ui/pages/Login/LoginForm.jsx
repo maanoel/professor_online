@@ -22,9 +22,7 @@ export const LoginForm = () => {
       if (err) {
         alert(err);
       } else {
-        alert(1);
         //TODO: Se for professor give classes se for alura professor lista..
-
         history.push("give-classes");
       }
     });
