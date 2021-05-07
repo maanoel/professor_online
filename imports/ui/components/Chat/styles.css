@@ -1,5 +1,7 @@
 #chat_help {
   display: block;
+  position: fixed;
+  z-index: 1;
 }
 
 .in_support_header {

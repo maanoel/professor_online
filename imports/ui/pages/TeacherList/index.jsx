@@ -45,6 +45,8 @@ const TeacherList = () => {
   return (
     <div id="page-teacher-list" className="contaienr">
       <SiderBar />
+      {showChat ? <Chat closeChat={closeChat} /> : ""}
+
       <PageHeader title="Estes são os Proffys disponívies.">
         <form onSubmit={searchTeachers} id="search-teachers">
           <Select
@@ -87,7 +89,6 @@ const TeacherList = () => {
           <button type="submit">Buscar</button>
         </form>
       </PageHeader>
-      {showChat ? <Chat closeChat={closeChat} /> : ""}
       <main>
         {teachers.map((teacher) => (
           <TeacherItem
