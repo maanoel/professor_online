@@ -4,7 +4,7 @@ import PageHeader from "../../components/PageHeader";
 import SiderBar from "../../components/SiderBar";
 import { ChatCollection } from "../../../db/ChatCollection";
 import Chat from "../../components/Chat";
-
+import MessageItem from "../../components/MessageItem";
 import "./styles.css";
 
 const MessagesList = () => {
@@ -13,13 +13,16 @@ const MessagesList = () => {
   const [chats, setChats] = useState([]);
   const [userId, setUserId] = useState(0);
 
+  const onClick = () => alert(1);
+
   useTracker(() => {
     const user = Meteor.user();
+
     if (!user) return;
 
     Meteor.subscribe("chats");
 
-    const teste = setTimeout(() => {
+    setTimeout(() => {
       setChats(
         ChatCollection.find({
           user_destiny: user._id,
@@ -45,25 +48,11 @@ const MessagesList = () => {
       <PageHeader title="Aqui você ler as mensagens que te enviaram"></PageHeader>
       <main>
         {chats.map((chat) => (
-          <ul className="list-group">
-            <li className="list-group-item d-flex justify-content-between align-items-center">
-              <img
-                src="https://www.w3schools.com/howto/img_avatar.png"
-                alt="Avatar"
-                className="message-list-img"
-              />
-              <button
-                type="button"
-                className="btn btn-primary btn-lg"
-                onClick={() => {
-                  handlerClickChat(chat.user_origin);
-                }}
-              >
-                Abrir Conversa
-              </button>
-              <span className="badge badge-primary badge-pill">14</span>
-            </li>
-          </ul>
+          <MessageItem
+            userOrigin={chat.user_origin}
+            obj={chat}
+            onClick={handlerClickChat}
+          />
         ))}
       </main>
     </div>
