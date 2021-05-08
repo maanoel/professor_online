@@ -14,8 +14,8 @@ const Chat = ({ closeChat, userId }) => {
 
     Meteor.subscribe("chatmessages");
     messages = ChatMessageCollection.find({
-      user_origin: user._id,
-      user_destiny: userId,
+      user_origin: { $in: [user._id, userId] },
+      user_destiny: { $in: [userId, user._id] },
     }).fetch();
   });
 
@@ -24,7 +24,7 @@ const Chat = ({ closeChat, userId }) => {
     setMessage("");
 
     const userLogado = Meteor.user();
-    console.log(userLogado);
+    console.log(message);
     Meteor.call(
       "chatmessages.insert",
       {
