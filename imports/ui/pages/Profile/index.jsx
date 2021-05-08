@@ -79,14 +79,28 @@ const ProfileForm = () => {
                   />
                 </div>
               </div>
-              <div className="mt-5 text-center">
-                <button
-                  className="btn btn-primary profile-button"
-                  type="button"
-                >
-                  Save Profile
-                </button>
-              </div>
+              <article className="teacher-item">
+                <footer>
+                  <p>
+                    <img
+                      src="https://i.ibb.co/prmTsbr/warning.png"
+                      alt="Aviso importante"
+                    />
+                    Important!
+                    <br />
+                    Preencha todos os dados
+                  </p>
+
+                  <a
+                    onClick={() => {
+                      onClick(userOrigin);
+                    }}
+                    href="#"
+                  >
+                    Salvar dados
+                  </a>
+                </footer>
+              </article>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ const MessageItem = ({ obj, onClick, userOrigin }) => {
         {/* <img src={obj.avatar} alt={obj.name} /> */}
         <p>
           Horário da última mensagem
-          <strong>08/05/2021 10:00</strong>
+          <strong>08/05/2021 11:00</strong>
         </p>
         <a
           onClick={() => {
