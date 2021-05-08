@@ -28,7 +28,7 @@ const Landing = () => {
             Estudar
           </Link>
 
-          <Link to="/give-classes" className="give-classes">
+          <Link to="/login" className="give-classes">
             <img
               src="https://i.ibb.co/sRqgWZc/give-classes.png"
               alt="Dar aulas"
@@ -38,7 +38,7 @@ const Landing = () => {
         </div>
 
         <span className="total-connections">
-          Total de {totalConnections} onexões já realizadas
+          Total de {totalConnections} conexões já realizadas
           <img
             src="https://i.ibb.co/J59mcVM/purple-heart.png"
             alt="Coração roxo"

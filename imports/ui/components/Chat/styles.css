@@ -5,7 +5,6 @@
 }
 
 .in_support_header {
-  float: right;
   width: 330px;
   height: 56px;
 
@@ -32,6 +31,7 @@
 .chat_support {
   position: absolute;
   min-width: 330px;
+  max-height: 600px;
   right: 10px;
   animation: up 1s;
   border: 1px solid;
@@ -72,49 +72,10 @@
   text-align: end;
 }
 
-.client_message {
-  padding: 20px 10px;
-  margin: 10px 0;
-  width: 250px;
-  margin-left: 30px;
-  border-radius: 4px;
-  line-height: 20px;
-}
-
-.client .message {
-  /* background: #cecad4; */
-  padding: 20px 10px;
-  margin: 10px 0;
-  width: 250px;
-  margin-left: 30px;
-  border-radius: 4px;
-}
-
 .text_support {
-  max-height: 400px;
-  min-height: 350;
-
+  max-height: 450px;
+  min-height: 350px;
   padding: 10px;
-}
-
-.admin {
-  display: flex;
-  flex-direction: column;
-}
-
-.admin .message {
-  width: 230px;
-  background: #f2ecfa;
-  border-radius: 4px;
-  padding: 10px;
-  margin-left: 12px;
-}
-
-.message_send {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid #cec9c9;
-  align-items: center;
 }
 
 .message_send input {
@@ -134,10 +95,13 @@
   padding: 0;
   margin: 0;
 }
-
+.text-content {
+  /* overflow-y: scroll; */
+}
 .text_help {
   padding-top: 8px;
-  margin-bottom: 60%;
+  overflow-y: scroll;
+  max-height: 250px;
 }
 
 .text_help textarea {

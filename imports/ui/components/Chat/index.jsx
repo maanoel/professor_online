@@ -15,6 +15,9 @@ const Chat = ({ closeChat }) => {
   });
 
   const sendMessage = () => {
+    if (!message || (message && message.trim().length == 0)) return;
+    setMessage("");
+
     const userLogado = Meteor.user();
 
     Meteor.call(
@@ -34,6 +37,10 @@ const Chat = ({ closeChat }) => {
     );
   };
 
+  scrollIntoView = (e) => {
+    e.scrollIntoView();
+  };
+
   return (
     <div className="chat chat_support" id="chat_help">
       <div className="in_support_header">
@@ -42,7 +49,7 @@ const Chat = ({ closeChat }) => {
           <img src="https://i.ibb.co/3TpDQ3y/close.png" />
         </div>
       </div>
-      <div className="text_support text_help">
+      <div className="text_support">
         <div className="text_help">
           <span>Conversa com Nadine Gubert</span>
           {messages.map((message) => (
@@ -54,12 +61,12 @@ const Chat = ({ closeChat }) => {
             </div>
           ))}
         </div>
-
         <div className="chat-mensagem">
           <span>Digite sua mensagem</span>
           <input
             type="text"
             id="email"
+            value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
         </div>

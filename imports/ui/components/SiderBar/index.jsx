@@ -1,10 +1,19 @@
 import React, { useState, Fragment } from "react";
+import { useTracker } from "meteor/react-meteor-data";
 
 import "./styles.css";
 import { MenuSvg } from "./svg/menu";
 
 const SiderBar = () => {
-  const [showSide, setShowSide] = useState(true);
+  const [showSide, setShowSide] = useState(false);
+
+  useTracker(() => {
+    const user = Meteor.user();
+
+    setTimeout(() => {
+      setShowSide(!!user);
+    }, 0);
+  });
 
   return (
     <div className="main">
