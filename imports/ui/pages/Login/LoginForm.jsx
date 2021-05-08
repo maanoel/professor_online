@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { useHistory } from "react-router-dom";
 
+import AlertDanger from "../../components/Alerts/Danger";
 import "./styles.css";
 
 export const LoginForm = () => {
@@ -10,6 +11,7 @@ export const LoginForm = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [messageError, setMessageError] = useState("");
   const history = useHistory();
 
   const goToNewUserPage = (e) => {
@@ -20,7 +22,7 @@ export const LoginForm = () => {
     e.preventDefault();
     Meteor.loginWithPassword(username, password, (err) => {
       if (err) {
-        alert(err);
+        setMessageError(err.message);
       } else {
         //TODO: Se for professor give classes se for alura professor lista..
         history.push("give-classes");
@@ -68,6 +70,7 @@ export const LoginForm = () => {
                       onChange={(e) => setPassword(e.target.value)}
                     />
                   </div>
+                  <AlertDanger key={messageError} message={messageError} />
                   <div className="d-flex mb-5 align-items-center">
                     <label className="control control--checkbox mb-0">
                       <span className="caption">Lemberar senha</span>
