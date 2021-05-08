@@ -42,7 +42,7 @@ const MessagesList = () => {
   }
 
   return (
-    <div id="page-teacher-list" className="contaienr">
+    <div id="page-teacher-list" className="container">
       <SiderBar />
       {showChat ? <Chat userId={userId} closeChat={closeChat} /> : ""}
       <PageHeader title="Aqui você ler as mensagens que te enviaram"></PageHeader>

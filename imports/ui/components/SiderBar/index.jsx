@@ -55,26 +55,11 @@ const SiderBar = () => {
                   </li>
                 </ul>
               </li>
+
               <li>
-                <a href="#">Sobre</a>
-              </li>
-              <li>
-                <a
-                  href="#pageSubmenu"
-                  data-toggle="collapse"
-                  aria-expanded="false"
-                  className="dropdown-toggle"
-                >
-                  Páginas
-                </a>
-                <ul className="collapse list-unstyled" id="pageSubmenu">
-                  <li>
-                    <a href="#">Estudantes</a>
-                  </li>
-                  <li>
-                    <a href="#">Professores</a>
-                  </li>
-                </ul>
+                <Link to="/profile">
+                  <a href="#">Meu perfil</a>
+                </Link>
               </li>
               <li>
                 <a href="#">Minhas Aulas</a>
@@ -86,6 +71,12 @@ const SiderBar = () => {
                 </Link>
 
                 <span className="badge badge-light">2</span>
+              </li>
+              <li>
+                <a href="#">Configurações</a>
+              </li>
+              <li>
+                <a href="#">Sair</a>
               </li>
             </ul>
           </nav>

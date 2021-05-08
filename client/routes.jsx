@@ -6,6 +6,7 @@ import TeacherList from "../imports/ui/pages/TeacherList";
 import TeacherForm from "../imports/ui/pages/TeacherForm";
 import NewUserForm from "../imports/ui/pages/NewUserForm";
 import MessagesList from "../imports/ui/pages/MessagesList";
+import ProfileForm from "../imports/ui/pages/Profile";
 
 const Routes = () => {
   return (
@@ -16,6 +17,7 @@ const Routes = () => {
       <Route path="/give-classes" component={TeacherForm} />
       <Route path="/new-user" component={NewUserForm} />
       <Route path="/messages" component={MessagesList} />
+      <Route path="/profile" component={ProfileForm} />
     </BrowserRouter>
   );
 };
