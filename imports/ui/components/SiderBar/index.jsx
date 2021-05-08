@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { useTracker } from "meteor/react-meteor-data";
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 import { MenuSvg } from "./svg/menu";
@@ -33,7 +34,6 @@ const SiderBar = () => {
             </div>
 
             <ul>
-              <p>Dummy Heading</p>
               <li className="active">
                 <a
                   href="#homeSubmenu"
@@ -56,7 +56,7 @@ const SiderBar = () => {
                 </ul>
               </li>
               <li>
-                <a href="#">About</a>
+                <a href="#">Sobre</a>
               </li>
               <li>
                 <a
@@ -65,25 +65,27 @@ const SiderBar = () => {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  Pages
+                  Páginas
                 </a>
                 <ul className="collapse list-unstyled" id="pageSubmenu">
                   <li>
-                    <a href="#">Page 1</a>
+                    <a href="#">Estudantes</a>
                   </li>
                   <li>
-                    <a href="#">Page 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Page 3</a>
+                    <a href="#">Professores</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="#">Portfolio</a>
+                <a href="#">Minhas Aulas</a>
               </li>
               <li>
-                <a href="#">Contact</a>
+                <div></div>
+                <Link to="/messages">
+                  <a href="#">Minhas Mensagens</a>
+                </Link>
+
+                <span className="badge badge-light">2</span>
               </li>
             </ul>
           </nav>

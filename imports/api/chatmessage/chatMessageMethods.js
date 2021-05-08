@@ -6,6 +6,7 @@ Meteor.methods({
     //   throw new Meteor.Error("Not authorized.");
     // }
 
+    console.log(obj);
     return ChatMessageCollection.insert({
       message: obj.message,
       user_destiny: obj.user_destiny,

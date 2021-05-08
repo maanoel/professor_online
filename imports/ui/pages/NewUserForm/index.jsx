@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
-import Select from "../../components/Select";
 import "./styles";
 
 const NewUserForm = () => {

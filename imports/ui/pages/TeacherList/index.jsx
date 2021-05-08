@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState } from "react";
 
 import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
@@ -15,6 +15,7 @@ import SiderBar from "../../components/SiderBar";
 const TeacherList = () => {
   let classes = [];
   const [teachers, setTeachers] = useState(classes);
+  const [userId, setUserId] = useState(0);
 
   useTracker(() => {
     Meteor.subscribe("classes");
@@ -38,14 +39,15 @@ const TeacherList = () => {
     setShowChat(!showChat);
   }
 
-  function handlerClickChat() {
+  function handlerClickChat(user_id) {
+    setUserId(user_id);
     setShowChat(true);
   }
 
   return (
     <div id="page-teacher-list" className="contaienr">
       <SiderBar />
-      {showChat ? <Chat closeChat={closeChat} /> : ""}
+      {showChat ? <Chat userId={userId} closeChat={closeChat} /> : ""}
 
       <PageHeader title="Estes são os Proffys disponívies.">
         <form onSubmit={searchTeachers} id="search-teachers">
@@ -92,9 +94,9 @@ const TeacherList = () => {
       <main>
         {teachers.map((teacher) => (
           <TeacherItem
-            key={teacher.id}
+            key={teacher._id}
             teacher={teacher}
-            onClick={handlerClickChat}
+            onClick={() => handlerClickChat(teacher.user_id)}
           />
         ))}
       </main>

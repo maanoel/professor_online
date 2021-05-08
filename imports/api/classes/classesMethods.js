@@ -13,6 +13,7 @@ Meteor.methods({
       bio: obj.bio,
       subject: obj.subject,
       cost: obj.cost,
+      user_id: this.userId,
     });
   },
 });

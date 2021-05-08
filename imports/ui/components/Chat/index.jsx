@@ -4,14 +4,19 @@ import { ChatMessageCollection } from "../../../db/ChatMessageCollection";
 
 import "./styles.css";
 
-const Chat = ({ closeChat }) => {
+const Chat = ({ closeChat, userId }) => {
   const [message, setMessage] = useState("");
-  const [showChat, setShowChat] = useState(true);
 
   let messages = "";
   useTracker(() => {
+    let user = Meteor.user();
+    if (!user) return;
+
     Meteor.subscribe("chatmessages");
-    messages = ChatMessageCollection.find({}).fetch();
+    messages = ChatMessageCollection.find({
+      user_origin: user._id,
+      user_destiny: userId,
+    }).fetch();
   });
 
   const sendMessage = () => {
@@ -19,12 +24,12 @@ const Chat = ({ closeChat }) => {
     setMessage("");
 
     const userLogado = Meteor.user();
-
+    console.log(userLogado);
     Meteor.call(
       "chatmessages.insert",
       {
         message: message,
-        user_destiny: userLogado._id,
+        user_destiny: userId,
         user_origin: userLogado._id,
         name_user_send: userLogado.username,
       },
