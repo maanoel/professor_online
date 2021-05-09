@@ -7,6 +7,7 @@ import { MenuSvg } from "./svg/menu";
 
 const SiderBar = () => {
   const [showSide, setShowSide] = useState(false);
+  const logout = () => Meteor.logout();
 
   useTracker(() => {
     const user = Meteor.user();
@@ -62,16 +63,16 @@ const SiderBar = () => {
 
               <li className="active">
                 <a
-                  href="#homeSubmenu"
+                  href="#teacherSubmenu"
                   data-toggle="collapse"
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
                   Professor
                 </a>
-                <ul className="collapse list-unstyled" id="homeSubmenu">
+                <ul className="collapse list-unstyled" id="teacherSubmenu">
                   <li>
-                    <a href="#">Classes</a>
+                    <Link to="/classes">Classes</Link>
                   </li>
                   <li>
                     <a href="#">Alunos</a>
@@ -86,14 +87,16 @@ const SiderBar = () => {
               </li>
               <li>
                 <Link to="/messages">
-                  Minhas Mensagens <span className="badge badge-light">2</span>
+                  Mensagens <span className="badge badge-light">2</span>
                 </Link>
               </li>
               <li>
                 <a href="#">Configurações</a>
               </li>
               <li>
-                <a href="#">Sair</a>
+                <Link to="/login" onClick={() => logout()}>
+                  Sair
+                </Link>
               </li>
             </ul>
           </nav>
