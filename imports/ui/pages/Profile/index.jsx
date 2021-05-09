@@ -85,9 +85,7 @@ const ProfileForm = () => {
                     <img
                       src="https://i.ibb.co/prmTsbr/warning.png"
                       alt="Aviso importante"
-                    />
-                    Important!
-                    <br />
+                    />{" "}
                     Preencha todos os dados
                   </p>
 

@@ -57,20 +57,15 @@ const SiderBar = () => {
               </li>
 
               <li>
-                <Link to="/profile">
-                  <a href="#">Meu perfil</a>
-                </Link>
+                <Link to="/profile">Meu perfil </Link>
               </li>
               <li>
                 <a href="#">Minhas Aulas</a>
               </li>
               <li>
-                <div></div>
                 <Link to="/messages">
-                  <a href="#">Minhas Mensagens</a>
+                  Minhas Mensagens <span className="badge badge-light">2</span>
                 </Link>
-
-                <span className="badge badge-light">2</span>
               </li>
               <li>
                 <a href="#">Configurações</a>

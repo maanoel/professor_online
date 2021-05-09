@@ -95,13 +95,13 @@
   padding: 0;
   margin: 0;
 }
-.text-content {
-  /* overflow-y: scroll; */
-}
+
 .text_help {
   padding-top: 8px;
   overflow-y: scroll;
   max-height: 250px;
+  word-wrap: break-word;
+  max-width: 300px;
 }
 
 .text_help textarea {
