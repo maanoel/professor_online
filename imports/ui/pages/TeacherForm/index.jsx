@@ -7,18 +7,15 @@ import Select from "../../components/Select";
 import { useTracker } from "meteor/react-meteor-data";
 import { useHistory } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
-
+import SiderBar from "../../components/SiderBar";
 import "./styles.css";
 
 const TeacherForm = () => {
-  const history = useHistory();
-
   useTracker(() => {
-    const userDoc = Meteor.user();
-    const loggingIn = Meteor.loggingIn();
-
-    if (!userDoc && !loggingIn) {
-      history.push("login");
+    const history = useHistory();
+    if (!Meteor.userId()) {
+      history.push("/login");
+      return [];
     }
   });
 
@@ -81,6 +78,7 @@ const TeacherForm = () => {
 
   return (
     <div id="page-teacher-form" className="contaienr">
+      <SiderBar />
       <PageHeader
         title="Que incrível que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"

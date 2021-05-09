@@ -1,20 +1,15 @@
 import React, { useState, Fragment } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Link } from "react-router-dom";
-
-import "./styles.css";
 import { MenuSvg } from "./svg/menu";
+import "./styles.css";
 
 const SiderBar = () => {
-  const [showSide, setShowSide] = useState(false);
   const logout = () => Meteor.logout();
 
-  useTracker(() => {
-    const user = Meteor.user();
-
-    setTimeout(() => {
-      setShowSide(!!user);
-    }, 0);
+  const showSide = useTracker(() => {
+    const user = !!Meteor.userId();
+    return user;
   });
 
   return (
@@ -46,19 +41,20 @@ const SiderBar = () => {
                 </a>
                 <ul className="collapse list-unstyled" id="homeSubmenu">
                   <li>
-                    <a href="#">Home 1</a>
+                    <a href="#">Sobre o proffy</a>
                   </li>
                   <li>
-                    <a href="#">Home 2</a>
-                  </li>
-                  <li>
-                    <a href="#">Home 3</a>
+                    <a href="#">Como ser um professor</a>
                   </li>
                 </ul>
               </li>
 
               <li>
                 <Link to="/profile">Perfil </Link>
+              </li>
+
+              <li>
+                <Link to="/study">Estudar</Link>
               </li>
 
               <li className="active">
@@ -71,6 +67,9 @@ const SiderBar = () => {
                   Professor
                 </a>
                 <ul className="collapse list-unstyled" id="teacherSubmenu">
+                  <li>
+                    <Link to="/give-classes">Criar Classe</Link>
+                  </li>
                   <li>
                     <Link to="/classes">Classes</Link>
                   </li>

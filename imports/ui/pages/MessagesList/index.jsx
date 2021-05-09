@@ -9,22 +9,18 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 
 const MessagesList = () => {
-  useEffect(() => {
-    if (!Meteor.loggingIn()) return;
-  });
-
   const [showSide, setShowSide] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [userId, setUserId] = useState(0);
   const user = useTracker(() => Meteor.user());
   const chats = useTracker(() => {
     const history = useHistory();
-    Meteor.subscribe("chats");
-
     if (!Meteor.userId()) {
       history.push("/login");
       return [];
     }
+
+    Meteor.subscribe("chats");
 
     return ChatCollection.find({
       user_destiny: Meteor.userId(),

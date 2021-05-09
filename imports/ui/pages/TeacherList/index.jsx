@@ -1,30 +1,31 @@
 import React, { useState } from "react";
-
 import PageHeader from "../../components/PageHeader";
 import TeacherItem from "../../components/TeacherItem";
 import Input from "../../components/Input";
 import Select from "../../components/Select";
 import { useTracker } from "meteor/react-meteor-data";
-
 import { ClassesCollection } from "../../../db/ClassesCollection";
-
-import "./styles.css";
 import Chat from "../../components/Chat";
 import SiderBar from "../../components/SiderBar";
+import { useHistory } from "react-router-dom";
+
+import "./styles.css";
 
 const TeacherList = () => {
-  let classes = [];
-  const [teachers, setTeachers] = useState(classes);
-  const [userId, setUserId] = useState(0);
+  const teachers = useTracker(() => {
+    const history = useHistory();
 
-  useTracker(() => {
+    if (!Meteor.userId()) {
+      history.push("/login");
+      return [];
+    }
+
     Meteor.subscribe("classes");
-    classes = ClassesCollection.find({}).fetch();
-    setTimeout(() => {
-      setTeachers(classes);
-    }, 0);
+    return ClassesCollection.find({}).fetch();
   });
 
+  // const [teachers, setTeachers] = useState(classes);
+  const [userId, setUserId] = useState(0);
   const [subject, setSubject] = useState("");
   const [week_day, setWeek_day] = useState("");
   const [time, setTime] = useState("");
@@ -32,7 +33,7 @@ const TeacherList = () => {
 
   function searchTeachers(e) {
     e.preventDefault();
-    setTeachers(classes);
+    // setTeachers(classes);
   }
 
   function closeChat() {
