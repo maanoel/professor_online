@@ -57,10 +57,32 @@ const SiderBar = () => {
               </li>
 
               <li>
-                <Link to="/profile">Meu perfil </Link>
+                <Link to="/profile">Perfil </Link>
+              </li>
+
+              <li className="active">
+                <a
+                  href="#homeSubmenu"
+                  data-toggle="collapse"
+                  aria-expanded="false"
+                  className="dropdown-toggle"
+                >
+                  Professor
+                </a>
+                <ul className="collapse list-unstyled" id="homeSubmenu">
+                  <li>
+                    <a href="#">Classes</a>
+                  </li>
+                  <li>
+                    <a href="#">Alunos</a>
+                  </li>
+                  <li>
+                    <a href="#">Pagamentos</a>
+                  </li>
+                </ul>
               </li>
               <li>
-                <a href="#">Minhas Aulas</a>
+                <a href="#">Histórico de Aulas</a>
               </li>
               <li>
                 <Link to="/messages">
