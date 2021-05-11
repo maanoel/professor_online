@@ -9,6 +9,10 @@ Meteor.methods({
       profile: { name: obj.user },
     });
 
-    ProfilesCollection.insert({ bio: bio, avatar: avatar, userId: userId });
+    ProfilesCollection.insert({
+      bio: obj.bio,
+      avatar: obj.avatar,
+      userId: userId,
+    });
   },
 });
