@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import SiderBar from "../../components/SiderBar";
 import { useTracker } from "meteor/react-meteor-data";
 import PageHeader from "../../components/PageHeader";
@@ -8,12 +8,6 @@ import { useHistory } from "react-router-dom";
 import { ProfilesCollection } from "../../../db/ProfilesCollection";
 
 const ProfileForm = () => {
-  const [name, setName] = useState("");
-  const [surname, setSurName] = useState("");
-  const [headline, setHeadLine] = useState("");
-  const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-
   const profile = useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
@@ -30,18 +24,36 @@ const ProfileForm = () => {
 
   const update = () => {
     Meteor.call("profiles.update", {
-      name: name,
-      surname: surname,
-      headline: headline,
-      city: city,
-      state: state,
+      name: profile.name,
+      surname: profile.surname,
+      headline: profile.headline,
+      city: profile.city,
+      state: profile.state,
     });
     alert(
       "Dados atualizado com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
     );
   };
 
-  console.log(profile);
+  setName = (valor) => {
+    profile.name = valor;
+  };
+
+  setSurName = (valor) => {
+    profile.surname = valor;
+  };
+
+  setHeadLine = (valor) => {
+    profile.headline = valor;
+  };
+
+  setCity = (valor) => {
+    profile.city = valor;
+  };
+
+  setState = (valor) => {
+    profile.state = valor;
+  };
 
   return (
     <div>
@@ -49,7 +61,7 @@ const ProfileForm = () => {
       <PageHeader title="Aqui estão as informações do seu perfil"></PageHeader>
       {profile
         ? [profile].map((p) => (
-            <div className="container rounded bg-white mt-5 mb-5">
+            <div className="container rounded bg-white mt-5 mb-5" key={p._id}>
               <div className="row">
                 <div className="col-md-7 border-right">
                   <div className="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -71,15 +83,15 @@ const ProfileForm = () => {
                         <Input
                           name="name"
                           label="Nome"
-                          value={p.name}
+                          defaultValue={p.name}
                           onChange={(e) => setName(e.target.value)}
                         />
                       </div>
                       <div className="col-md-6">
                         <Input
                           name="surname"
-                          label="Sobrenosme"
-                          value={p.surname}
+                          label="Sobrenome"
+                          defaultValue={p.surname}
                           onChange={(e) => setSurName(e.target.value)}
                         />
                       </div>
@@ -89,7 +101,7 @@ const ProfileForm = () => {
                         <Input
                           name="headline"
                           label="Profissão"
-                          value={p.headline}
+                          defaultValue={p.headline}
                           onChange={(e) => setHeadLine(e.target.value)}
                         />
                       </div>
@@ -97,10 +109,14 @@ const ProfileForm = () => {
                     <div className="row mt-3">
                       <div className="col-md-6">
                         <Select
+                          id="state"
                           name="state"
                           label="Estado"
                           value={p.state}
-                          options={[{ value: "0", label: "Bahia" }]}
+                          options={[
+                            { value: "0", label: "Bahia" },
+                            { value: "1", label: "Rio de Janeiro" },
+                          ]}
                           onChange={(e) => setState(e.target.value)}
                         />
                       </div>
@@ -109,7 +125,10 @@ const ProfileForm = () => {
                           name="city"
                           label="Cidade"
                           value={p.city}
-                          options={[{ value: "0", label: "Salvador" }]}
+                          options={[
+                            { value: "0", label: "Salvador" },
+                            { value: "1", label: "Rio de Janeiro" },
+                          ]}
                           onChange={(e) => setCity(e.target.value)}
                         />
                       </div>

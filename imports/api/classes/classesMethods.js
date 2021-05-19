@@ -1,24 +1,19 @@
-import { ProfilesCollection } from "../../db/ProfilesCollection";
+import { ClassesCollection } from "../../db/ClassesCollection";
 
 Meteor.methods({
-  "profiles.update"(obj) {
-    if (!this.userId) {
-      throw new Meteor.Error("Not authorized.");
-    }
+  "classes.insert"(obj) {
+    // if (!this.userId) {
+    //   throw new Meteor.Error("Not authorized.");
+    // }
 
-    return ProfilesCollection.update(
-      {
-        userId: this.userId,
-      },
-      {
-        $set: {
-          name: obj.name,
-          surname: obj.surname,
-          headline: obj.headline,
-          city: obj.city,
-          state: obj.state,
-        },
-      }
-    );
+    return ClassesCollection.insert({
+      name: obj.name,
+      avatar: obj.avatar,
+      whatsapp: obj.whatsapp,
+      bio: obj.bio,
+      subject: obj.subject,
+      cost: obj.cost,
+      user_id: this.userId,
+    });
   },
 });
