@@ -37,7 +37,7 @@ const SiderBar = () => {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  Home
+                  Home 
                 </a>
                 <ul className="collapse list-unstyled" id="homeSubmenu">
                   <li>
@@ -47,7 +47,7 @@ const SiderBar = () => {
                     <a href="#">Como ser um professor</a>
                   </li>
                   <li>
-                    <Link to="/About">Sobre nós</Link>
+                    <Link to="/About">Sobre nós</Link> 
                   </li>
                 </ul>
               </li>

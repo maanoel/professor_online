@@ -59,7 +59,7 @@ const About = () => {
                 </div>
             </div>
             <div className="row align-items-center">
-                <div className="col-lg-5 px-5 mx-auto">
+                <div className="col-lg-5 px-5 mx-auto"> 
                 <img
                     src="https://res.cloudinary.com/mhmd/image/upload/v1556834136/img-2_vdgqgn.jpg"
                     alt=""
