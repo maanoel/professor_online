@@ -9,7 +9,7 @@ import MessagesList from "../imports/ui/pages/MessagesList";
 import ProfileForm from "../imports/ui/pages/Profile";
 import ClassList from "../imports/ui/pages/ClassList";
 import About from "../imports/ui/pages/About";
-
+import AnnotationsStudent from "../imports/ui/pages/AnnotationsStudent";
 const Routes = () => {
   return (
     <BrowserRouter>
