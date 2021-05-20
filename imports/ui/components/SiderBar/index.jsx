@@ -46,6 +46,9 @@ const SiderBar = () => {
                   <li>
                     <a href="#">Como ser um professor</a>
                   </li>
+                  <li>
+                    <Link to="/About">Sobre nós</Link>
+                  </li>
                 </ul>
               </li>
 
@@ -92,6 +95,7 @@ const SiderBar = () => {
               <li>
                 <a href="#">Configurações</a>
               </li>
+
               <li>
                 <Link to="/login" onClick={() => logout()}>
                   Sair

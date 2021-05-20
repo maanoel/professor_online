@@ -8,11 +8,13 @@ import NewUserForm from "../imports/ui/pages/NewUserForm";
 import MessagesList from "../imports/ui/pages/MessagesList";
 import ProfileForm from "../imports/ui/pages/Profile";
 import ClassList from "../imports/ui/pages/ClassList";
+import About from "../imports/ui/pages/About";
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Route path="/" exact component={Landing} />
+      <Route path="/about" exact component={About} />
       <Route path="/login" exact component={LoginForm} />
       <Route path="/study" component={TeacherList} />
       <Route path="/give-classes" component={TeacherForm} />
