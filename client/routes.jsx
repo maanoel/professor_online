@@ -8,6 +8,7 @@ import NewUserForm from "../imports/ui/pages/NewUserForm";
 import MessagesList from "../imports/ui/pages/MessagesList";
 import ProfileForm from "../imports/ui/pages/Profile";
 import ClassList from "../imports/ui/pages/ClassList";
+import AnnotationsStudent from "../imports/ui/pages/AnnotationsStudent";
 
 const Routes = () => {
   return (
@@ -20,6 +21,7 @@ const Routes = () => {
       <Route path="/messages" component={MessagesList} />
       <Route path="/profile" component={ProfileForm} />
       <Route path="/classes" component={ClassList} />
+      <Route path="/annotations-student" component={AnnotationsStudent} />
     </BrowserRouter>
   );
 };
