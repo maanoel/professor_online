@@ -3,6 +3,10 @@ import SiderBar from "../../components/SiderBar";
 import { useTracker } from "meteor/react-meteor-data";
 import PageHeader from "../../components/PageHeader";
 import { useHistory } from "react-router-dom";
+import TextArea from "../../components/TextArea";
+import Input from "../../components/Input";
+
+import "./styles.css";
 
 const AnnotationsStudent = () => {
   const profile = useTracker(() => {
@@ -16,9 +20,20 @@ const AnnotationsStudent = () => {
   const update = () => {};
 
   return (
-    <div>
+    <div className="annotation">
       <SiderBar />
       <PageHeader title="Anote informações que considere importante e consulte depois."></PageHeader>
+      <main>
+        <Input
+        name="title"
+        label="Título da anotação" />
+        <div className="text-area-anotation">
+          <TextArea  label="Anotação" />
+        </div>
+
+        <button type="submit">Salvar cadastro</button>
+
+      </main>
     </div>
   );
 };

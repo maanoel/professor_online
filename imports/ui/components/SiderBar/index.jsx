@@ -88,6 +88,9 @@ const SiderBar = () => {
                 <a href="#">Histórico de Aulas</a>
               </li>
               <li>
+                    <Link to="/annotations-student">Anotações</Link>
+                  </li>              
+              <li>
                 <Link to="/messages">
                   Mensagens <span className="badge badge-light">2</span>
                 </Link>

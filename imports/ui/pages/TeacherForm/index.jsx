@@ -77,7 +77,7 @@ const TeacherForm = () => {
   }
 
   return (
-    <div id="page-teacher-form" className="contaienr">
+    <div id="page-teacher-form" >
       <SiderBar />
       <PageHeader
         title="Que incrível que você quer dar aulas."
