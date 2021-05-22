@@ -22,6 +22,17 @@ const NewUserForm = () => {
       email: email,
       bio: bio,
       avatar: avatar,
+    }, (err) => {
+      if (err) {
+        alert(err);
+      } else {
+        Meteor.loginWithPassword(userName, password, (err) => {
+          if (err) {
+          } else {
+            location.href = "study";
+          }
+        });
+      }
     });
   }
 
@@ -34,6 +45,7 @@ const NewUserForm = () => {
 
       <main>
         <form onSubmit={handleCreateUser}>
+        
           <fieldset>
             <legend>Seus dados</legend>
 

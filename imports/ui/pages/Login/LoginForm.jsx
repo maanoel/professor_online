@@ -1,6 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
-import { useTracker } from "meteor/react-meteor-data";
 import { useHistory } from "react-router-dom";
 
 import AlertDanger from "../../components/Alerts/Danger";
@@ -24,7 +23,6 @@ export const LoginForm = () => {
       if (err) {
         setMessageError(err.message);
       } else {
-        //TODO: Se for professor give classes se for alura professor lista..
         history.push("give-classes");
       }
     });

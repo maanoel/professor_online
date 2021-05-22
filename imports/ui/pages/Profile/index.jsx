@@ -31,7 +31,7 @@ const ProfileForm = () => {
       state: profile.state,
     });
     alert(
-      "Dados atualizado com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
+      "Dados atualizados com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
     );
   };
 
@@ -49,6 +49,7 @@ const ProfileForm = () => {
 
   setCity = (valor) => {
     profile.city = valor;
+    
   };
 
   setState = (valor) => {
