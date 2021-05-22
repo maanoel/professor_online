@@ -29,7 +29,7 @@ const AnnotationsStudent = () => {
         label="Título da anotação" />
         <div className="text-area-anotation">
           <TextArea  label="Anotação" />
-        </div> 
+        </div>  
 
         <button type="submit">Salvar cadastro</button>
 
