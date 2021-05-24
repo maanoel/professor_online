@@ -88,7 +88,7 @@ const SiderBar = () => {
                 <a href="#">Histórico de Aulas</a>
               </li>
               <li>
-                <Link to="/annotations">Anotações</Link>
+                <Link to="/annotations-list">Anotações</Link>
               </li>
               <li>
                 <Link to="/messages">

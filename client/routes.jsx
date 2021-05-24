@@ -11,6 +11,8 @@ import ClassList from "../imports/ui/pages/ClassList";
 import About from "../imports/ui/pages/About";
 import Annotations from "../imports/ui/pages/Annotations";
 import Comments from "../imports/ui/pages/Comments";
+import AnnotationList from "../imports/ui/pages/AnnotationList";
+
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -24,8 +26,10 @@ const Routes = () => {
       <Route path="/profile" component={ProfileForm} />
       <Route path="/classes" component={ClassList} />
       <Route path="/annotations" component={Annotations} />
+      <Route path="/annotations-list" component={AnnotationList} />
       <Route path="/comments" component={Comments} />
     </BrowserRouter>
   );
 };
+
 export default Routes;
