@@ -97,7 +97,7 @@ const TeacherList = () => {
           <TeacherItem
             key={teacher._id}
             teacher={teacher}
-            onClick={() => handlerClickChat(teacher.user_id)}
+            onClickChat={() => handlerClickChat(teacher.user_id)}
           />
         ))}
       </main>

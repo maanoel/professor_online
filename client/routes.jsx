@@ -10,6 +10,7 @@ import ProfileForm from "../imports/ui/pages/Profile";
 import ClassList from "../imports/ui/pages/ClassList";
 import About from "../imports/ui/pages/About";
 import AnnotationsStudent from "../imports/ui/pages/AnnotationsStudent";
+import Comments from "../imports/ui/pages/Comments";
 const Routes = () => {
   return (
     <BrowserRouter>
@@ -23,6 +24,7 @@ const Routes = () => {
       <Route path="/profile" component={ProfileForm} />
       <Route path="/classes" component={ClassList} />
       <Route path="/annotations-student" component={AnnotationsStudent} />
+      <Route path="/comments" component={Comments} />
     </BrowserRouter>
   );
 };
