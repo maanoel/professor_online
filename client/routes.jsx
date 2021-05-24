@@ -25,7 +25,7 @@ const Routes = () => {
       <Route path="/messages" component={MessagesList} />
       <Route path="/profile" component={ProfileForm} />
       <Route path="/classes" component={ClassList} />
-      <Route path="/annotations" component={Annotations} />
+      <Route path="/annotation" component={Annotations} />
       <Route path="/annotations-list" component={AnnotationList} />
       <Route path="/comments" component={Comments} />
     </BrowserRouter>

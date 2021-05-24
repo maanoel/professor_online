@@ -3,8 +3,9 @@ import { useTracker } from "meteor/react-meteor-data";
 import { AnnotationCollection } from "../../../db/AnnotationCollection";
 import PageHeader from "../../components/PageHeader";
 import SiderBar from "../../components/SiderBar";
-import { useHistory } from "react-router-dom";
 import TextItem from "../../components/TextItem";
+import { useHistory } from "react-router-dom";
+
 import "./styles.css";
 
 const AnnotationList = () => {
@@ -22,17 +23,30 @@ const AnnotationList = () => {
     }).fetch();
   });
 
+  const history = useTracker(() => {
+    let history = useHistory();
+    return history;
+  });
+
+  const handlerClick = (id) => {
+    history.push("/annotation/");
+  };
+
   return (
     <div id="page-teacher-list">
       <SiderBar />
       <PageHeader title="Uma lista de anotações com como pouchitis   ;)"></PageHeader>
       <main>
-        <div class="list-group">
+        <div className="list-group">
           {annotations.map((annotation) => (
             <TextItem
-              key={annotation.annotationTitle}
+              id={annotation._id}
+              key={annotation._id}
               title={annotation.annotationTitle}
               text={annotation.annotation}
+              onClick={(id) => {
+                handlerClick(id);
+              }}
             />
           ))}
         </div>

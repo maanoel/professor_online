@@ -1,13 +1,18 @@
 import React from "react";
 import "./styles.css";
 
-const TextItem = ({ title, text }) => {
+const TextItem = ({ id, title, text, onClick }) => {
   return (
     <article className="text-item-annotation">
-      <div className="list-group">
+      <div
+        className="list-group"
+        onClick={() => {
+          onClick(id);
+        }}
+      >
         <a
           href="#"
-          class="list-group-item list-group-item-action flex-column align-items-start active"
+          className="list-group-item list-group-item-action flex-column align-items-start active"
         >
           <div className="d-flex w-100 justify-content-between">
             <h5 className="mb-1">{title}</h5>
