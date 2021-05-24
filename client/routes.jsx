@@ -9,7 +9,7 @@ import MessagesList from "../imports/ui/pages/MessagesList";
 import ProfileForm from "../imports/ui/pages/Profile";
 import ClassList from "../imports/ui/pages/ClassList";
 import About from "../imports/ui/pages/About";
-import AnnotationsStudent from "../imports/ui/pages/AnnotationsStudent";
+import Annotations from "../imports/ui/pages/Annotations";
 import Comments from "../imports/ui/pages/Comments";
 const Routes = () => {
   return (
@@ -23,7 +23,7 @@ const Routes = () => {
       <Route path="/messages" component={MessagesList} />
       <Route path="/profile" component={ProfileForm} />
       <Route path="/classes" component={ClassList} />
-      <Route path="/annotations-student" component={AnnotationsStudent} />
+      <Route path="/annotations" component={Annotations} />
       <Route path="/comments" component={Comments} />
     </BrowserRouter>
   );

@@ -10,6 +10,8 @@ import "/imports/api/chat/chatPublications";
 import "/imports/api/profile/profilePublications";
 import "/imports/api/login/loginMethods";
 import "/imports/api/profile/profilesMethods";
+import "/imports/api/annotation/annotationMethods";
+import "/imports/api/annotation/annotationPublications";
 
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Link } from "react-router-dom";
 import { MenuSvg } from "./svg/menu";
@@ -37,7 +37,7 @@ const SiderBar = () => {
                   aria-expanded="false"
                   className="dropdown-toggle"
                 >
-                  Home 
+                  Home
                 </a>
                 <ul className="collapse list-unstyled" id="homeSubmenu">
                   <li>
@@ -47,7 +47,7 @@ const SiderBar = () => {
                     <a href="#">Como ser um professor</a>
                   </li>
                   <li>
-                    <Link to="/About">Sobre nós</Link> 
+                    <Link to="/About">Sobre nós</Link>
                   </li>
                 </ul>
               </li>
@@ -88,8 +88,8 @@ const SiderBar = () => {
                 <a href="#">Histórico de Aulas</a>
               </li>
               <li>
-                    <Link to="/annotations-student">Anotações</Link>
-                  </li>              
+                <Link to="/annotations">Anotações</Link>
+              </li>
               <li>
                 <Link to="/messages">
                   Mensagens <span className="badge badge-light">2</span>
