@@ -18,8 +18,6 @@ const PageHeader = ({ title, description, children }) => {
           <img src="https://i.ibb.co/6DyjXsD/back.png" alt="Voltar" />
         </a>
 
-        {/* <Link to="/"></Link> */}
-
         <img src="https://i.ibb.co/KrNtNX4/logo.png" alt="Proffy" />
       </div>
 
