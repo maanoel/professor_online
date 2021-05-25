@@ -1,25 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useTracker } from "meteor/react-meteor-data";
-import { AnnotationCollection } from "../../../db/AnnotationCollection";
+import { CommentCollection } from "../../../db/CommentCollection";
 import PageHeader from "../../components/PageHeader";
 import SiderBar from "../../components/SiderBar";
 import TextItem from "../../components/TextItem";
 import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 
 import "./styles.css";
 
-const AnnotationList = () => {
-  const annotations = useTracker(() => {
+const CommentsList = () => {
+  const comments = useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
       history.push("/login");
       return [];
     }
 
-    Meteor.subscribe("annotations");
+    Meteor.subscribe("comments");
 
-    return AnnotationCollection.find({
+    return CommentCollection.find({
       userId: Meteor.userId(),
     }).fetch();
   });
@@ -36,19 +35,15 @@ const AnnotationList = () => {
   return (
     <div id="page-teacher-list">
       <SiderBar />
-      <PageHeader title="Uma lista de anotações com como pouchitis   ;)"></PageHeader>
+      <PageHeader title="Comentário sobre a aula de Fulano de tal"></PageHeader>
       <main>
         <div className="list-group">
-          <Link to="/annotation" className="new-annotation">
-            Nova anotação
-          </Link>
-
-          {annotations.map((annotation) => (
+          {comments.map((comment) => (
             <TextItem
-              id={annotation._id}
-              key={annotation._id}
-              title={annotation.annotationTitle}
-              text={annotation.annotation}
+              id={comment._id}
+              key={comment._id}
+              title={comment.title}
+              text={comment.comment}
               onClick={(id) => {
                 handlerClick(id);
               }}
@@ -60,4 +55,4 @@ const AnnotationList = () => {
   );
 };
 
-export default AnnotationList;
+export default CommentsList;

@@ -12,7 +12,8 @@ import "/imports/api/login/loginMethods";
 import "/imports/api/profile/profilesMethods";
 import "/imports/api/annotation/annotationMethods";
 import "/imports/api/annotation/annotationPublications";
-
+import "/imports/api/comment/commentMethods";
+import "/imports/api/comment/commentPublications";
 const SEED_USERNAME = "meteorite";
 const SEED_PASSWORD = "password";
 

@@ -24,7 +24,6 @@ const Chat = ({ closeChat, userId }) => {
     setMessage("");
 
     const userLogado = Meteor.user();
-    console.log(message);
     Meteor.call(
       "chatmessages.insert",
       {

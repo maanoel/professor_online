@@ -6,3 +6,11 @@
 .list-group {
   font-size: 18px;
 }
+
+.new-annotation {
+  float: left !important;
+  width: 100%;
+  text-align: end;
+  text-decoration: none;
+  margin-bottom: 15px;
+}

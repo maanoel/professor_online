@@ -12,6 +12,7 @@ import About from "../imports/ui/pages/About";
 import Annotations from "../imports/ui/pages/Annotations";
 import Comments from "../imports/ui/pages/Comments";
 import AnnotationList from "../imports/ui/pages/AnnotationList";
+import CommentsList from "../imports/ui/pages/CommentsList";
 
 const Routes = () => {
   return (
@@ -28,6 +29,7 @@ const Routes = () => {
       <Route path="/annotation" component={Annotations} />
       <Route path="/annotations-list" component={AnnotationList} />
       <Route path="/comments" component={Comments} />
+      <Route path="/comments-list" component={CommentsList} />
     </BrowserRouter>
   );
 };
