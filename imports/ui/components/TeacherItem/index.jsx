@@ -27,7 +27,7 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
           <img src="https://img.icons8.com/small/20/000000/video-message.png" alt="Vídeo" />
           Iniciar chamada de Vídeo
         </a>
-        <a href="comments" className = "button3" >
+        <a href="comments-list" className = "button3" >
           <img src="https://img.icons8.com/fluent-systems-regular/20/000000/comments--v2.png" alt="Comentários" />
           Fazer um comentário
         </a>

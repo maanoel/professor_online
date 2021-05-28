@@ -36,7 +36,7 @@ const AnnotationList = () => {
   return (
     <div id="page-teacher-list">
       <SiderBar />
-      <PageHeader title="Uma lista de anotações com como pouchitis   ;)"></PageHeader>
+      <PageHeader title="Uma lista de anotações, como um Post-it  ;)"></PageHeader>
       <main>
         <div className="list-group">
           <Link to="/annotation" className="new-annotation">

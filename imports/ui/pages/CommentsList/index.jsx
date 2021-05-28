@@ -5,6 +5,7 @@ import PageHeader from "../../components/PageHeader";
 import SiderBar from "../../components/SiderBar";
 import TextItem from "../../components/TextItem";
 import { useHistory } from "react-router-dom";
+import CommentItem from "../../components/CommentItem"
 
 import "./styles.css";
 
@@ -38,17 +39,9 @@ const CommentsList = () => {
       <PageHeader title="Comentário sobre a aula de Fulano de tal"></PageHeader>
       <main>
         <div className="list-group">
-          {comments.map((comment) => (
-            <TextItem
-              id={comment._id}
-              key={comment._id}
-              title={comment.title}
-              text={comment.comment}
-              onClick={(id) => {
-                handlerClick(id);
-              }}
-            />
-          ))}
+          
+            <CommentItem/>
+         
         </div>
       </main>
     </div>
