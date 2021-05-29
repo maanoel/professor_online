@@ -13,11 +13,14 @@ const NewUserForm = () => {
   const [bio, setBio] = useState("");
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
+  const [showDanger, setShowDanger] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   function handleCreateUser(e) {
-    if (_validaEmpty());
-
     e.preventDefault();
+
+    if (!_validaEmpty()) return;
+
     Meteor.call(
       "new-user",
       {
@@ -43,29 +46,43 @@ const NewUserForm = () => {
   }
 
   function _validaEmpty() {
-    if (name == "" || name == null) {
-      alert("preencha o nome");
+    if (userName == "" || userName == null) {
+      setShowDanger(true);
+      setErrorMessage("O campo usuário é obrigatório!");
+      return false;
     }
 
-    if (userName == "" || userName == null) {
-      alert("preencha o userName");
+    if (name == "" || name == null) {
+      setShowDanger(true);
+      setErrorMessage("O nome completo  é obrigatório!");
+      return false;
     }
 
     if (email == "" || email == null) {
-      alert("preencha o email");
+      setShowDanger(true);
+      setErrorMessage("O campo Email é obrigatório!");
+      return false;
     }
 
     if (bio == "" || bio == null) {
-      alert("preencha o bio");
+      setShowDanger(true);
+      setErrorMessage("O campo bio é obrigatório!");
+      return false;
     }
 
     if (password == "" || password == null) {
-      alert("preencha o password");
+      setShowDanger(true);
+      setErrorMessage("O campo senha é obrigatório!");
+      return false;
     }
 
     if (passwordAgain == "" || passwordAgain == null) {
-      alert("preencha o passwordAgain");
+      setShowDanger(true);
+      setErrorMessage("O campo para repetir a senha é obrigatório!");
+      return false;
     }
+
+    return true;
   }
 
   return (
@@ -128,6 +145,7 @@ const NewUserForm = () => {
               maxlength="500"
               onChange={(e) => setBio(e.target.value)}
             />
+            {showDanger ? <FormDanger errorMessage={errorMessage} /> : ""}
           </fieldset>
           <footer>
             <p>
@@ -136,7 +154,7 @@ const NewUserForm = () => {
                 alt="Aviso importante"
               />
               <br />
-              Preencha todos os dados
+              Preencha todos os campos
             </p>
             <button type="submit">Salvar cadastro</button>
           </footer>
