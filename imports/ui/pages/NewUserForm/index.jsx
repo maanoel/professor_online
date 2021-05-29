@@ -129,6 +129,7 @@ const NewUserForm = () => {
               label="Senha"
               minLength="8"
               value={password}
+              type="password"
               onChange={(e) => setPassword(e.target.value)}
             />
 
@@ -137,6 +138,7 @@ const NewUserForm = () => {
               label="Repita a senha"
               minLength="8"
               value={passwordAgain}
+              type="password"
               onChange={(e) => setPasswordAgain(e.target.value)}
             />
 
