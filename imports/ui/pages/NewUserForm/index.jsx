@@ -32,10 +32,11 @@ const NewUserForm = () => {
       },
       (err) => {
         if (err) {
-          alert(err);
+          _setMessageDanger(err);
         } else {
           Meteor.loginWithPassword(userName, password, (err) => {
             if (err) {
+              _setMessageDanger(err);
             } else {
               location.href = "study";
             }
@@ -47,42 +48,43 @@ const NewUserForm = () => {
 
   function _validaEmpty() {
     if (userName == "" || userName == null) {
-      setShowDanger(true);
-      setErrorMessage("O campo usuário é obrigatório!");
+      _setMessageDanger("Informe um nome de usuário antes de avançar");
       return false;
     }
 
     if (name == "" || name == null) {
-      setShowDanger(true);
-      setErrorMessage("O nome completo  é obrigatório!");
+      _setMessageDanger("Informe seu nome completo antes de avançar.");
       return false;
     }
 
     if (email == "" || email == null) {
-      setShowDanger(true);
-      setErrorMessage("O campo Email é obrigatório!");
+      _setMessageDanger("Informe um email antes de avançar.");
       return false;
     }
 
     if (bio == "" || bio == null) {
-      setShowDanger(true);
-      setErrorMessage("O campo bio é obrigatório!");
+      _setMessageDanger("Informe a bio antes de avançar.");
       return false;
     }
 
     if (password == "" || password == null) {
-      setShowDanger(true);
-      setErrorMessage("O campo senha é obrigatório!");
+      _setMessageDanger(
+        "Informe uma senha com no mínimo 8 caracteres antes de avançar."
+      );
       return false;
     }
 
     if (passwordAgain == "" || passwordAgain == null) {
-      setShowDanger(true);
-      setErrorMessage("O campo para repetir a senha é obrigatório!");
+      _setMessageDanger("Repita a mesma senha antes de avançar.");
       return false;
     }
 
     return true;
+  }
+
+  function _setMessageDanger(errorMessage) {
+    setShowDanger(true);
+    setErrorMessage(errorMessage);
   }
 
   return (
