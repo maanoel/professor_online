@@ -11,7 +11,6 @@ Meteor.methods({
 
     ProfilesCollection.insert({
       bio: obj.bio,
-      avatar: obj.avatar,
       userId: userId,
     });
   },

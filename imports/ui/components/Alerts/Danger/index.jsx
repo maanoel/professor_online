@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 const AlertDanger = (obj) => {
-  console.log(obj);
   return (
     <section>
       {obj && obj.message ? (
