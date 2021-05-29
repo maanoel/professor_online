@@ -6,6 +6,7 @@ import Input from "../../components/Input";
 import Select from "../../components/Select";
 import { useHistory } from "react-router-dom";
 import { ProfilesCollection } from "../../../db/ProfilesCollection";
+import Images from "../../../db/ImageCollection";
 
 const ProfileForm = () => {
   const profile = useTracker(() => {
@@ -49,11 +50,47 @@ const ProfileForm = () => {
 
   setCity = (valor) => {
     profile.city = valor;
-    
   };
 
   setState = (valor) => {
     profile.state = valor;
+  };
+
+  changeImage = () => {
+    document.getElementById("fileInput").click();
+  };
+
+  changeFile = (e) => {
+    debugger;
+    Meteor.subscribe("files.images.all");
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
+      // We upload only one file, in case
+      // multiple files were selected
+      const upload = Images.insert(
+        {
+          file: e.currentTarget.files[0],
+          chunkSize: "dynamic",
+        },
+        false
+      );
+
+      upload.on("start", function () {
+        alert("start");
+        // template.currentUpload.set(this);
+      });
+
+      upload.on("end", function (error, fileObj) {
+        if (error) {
+          alert(`Error during upload: ${error}`);
+        } else {
+          alert(`File "${fileObj.name}" successfully uploaded`);
+        }
+        alert("end");
+        // template.currentUpload.set(false);
+      });
+
+      upload.start();
+    }
   };
 
   return (
@@ -71,9 +108,23 @@ const ProfileForm = () => {
                       src={p.avatar}
                       width="90"
                     />
-                    <span className="font-weight-bold">John Doe</span>
-                    <span className="text-black-50">john_doe12@bbb.com</span>
+                    <span className="font-weight-bold">
+                      {profile.name} {profile.surname}
+                    </span>
+                    <span className="text-black-50">
+                      falta@colocaroemailaqui.com
+                    </span>
                     <span>United States</span>
+                    <br />
+                    <a onClick={() => changeImage()}>
+                      Clique para alterar Imagem
+                    </a>
+                    <input
+                      id="fileInput"
+                      type="file"
+                      onChange={(e) => changeFile(e)}
+                      hidden
+                    />
                   </div>
                 </div>
 
