@@ -5,12 +5,15 @@ import PageHeader from "../../components/PageHeader";
 import { useHistory } from "react-router-dom";
 import TextArea from "../../components/TextArea";
 import Input from "../../components/Input";
+import FormDanger from "../../components/Alerts/FormDanger";
 
 import "./styles.css";
 
 const Annotations = () => {
   const [annotation, setAnnotation] = useState("");
   const [annotationTitle, setAnnotationTitle] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
+  const [showDanger, setShowDanger] = useState(false);
 
   const profile = useTracker(() => {
     const history = useHistory();
@@ -21,6 +24,8 @@ const Annotations = () => {
   });
 
   const insert = () => {
+    if (!_validaEmpty()) return;
+
     Meteor.subscribe("annotations");
     Meteor.call(
       "annotations.insert",
@@ -38,6 +43,25 @@ const Annotations = () => {
     );
   };
 
+  function _validaEmpty() {
+    if (annotationTitle == "" || annotationTitle == null) {
+      _setMessageDanger("Informe um titúlo para sua anotação.");
+      return false;
+    }
+
+    if (annotation == "" || annotation == null) {
+      _setMessageDanger("Informe algo na sua anotação.");
+      return false;
+    }
+
+    return true;
+  }
+
+  function _setMessageDanger(errorMessage) {
+    setShowDanger(true);
+    setErrorMessage(errorMessage);
+  }
+
   return (
     <div className="annotation">
       <SiderBar />
@@ -54,6 +78,8 @@ const Annotations = () => {
             onChange={(e) => setAnnotation(e.target.value)}
           />
         </div>
+
+        {showDanger ? <FormDanger errorMessage={errorMessage} /> : ""}
 
         <button
           onClick={() => {
