@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SiderBar from "../../components/SiderBar";
 import { useTracker } from "meteor/react-meteor-data";
 import PageHeader from "../../components/PageHeader";
@@ -9,6 +9,7 @@ import { ProfilesCollection } from "../../../db/ProfilesCollection";
 import Images from "../../../db/ImageCollection";
 
 const ProfileForm = () => {
+  const [teste, setTeste] = useState("");
   const profile = useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
@@ -56,13 +57,17 @@ const ProfileForm = () => {
     profile.state = valor;
   };
 
+  setAvatar = (valor) => {
+    profile.avatar = valor;
+  };
+
   changeImage = () => {
     document.getElementById("fileInput").click();
   };
 
   changeFile = (e) => {
-    debugger;
     Meteor.subscribe("files.images.all");
+
     if (e.currentTarget.files && e.currentTarget.files[0]) {
       // We upload only one file, in case
       // multiple files were selected
@@ -74,19 +79,16 @@ const ProfileForm = () => {
         false
       );
 
-      upload.on("start", function () {
-        alert("start");
-        // template.currentUpload.set(this);
-      });
+      upload.on("start", function () {});
 
       upload.on("end", function (error, fileObj) {
         if (error) {
           alert(`Error during upload: ${error}`);
         } else {
+          const imagesFind = Images.findOne().link();
+          setTeste(imagesFind);
           alert(`File "${fileObj.name}" successfully uploaded`);
         }
-        alert("end");
-        // template.currentUpload.set(false);
       });
 
       upload.start();
@@ -105,7 +107,7 @@ const ProfileForm = () => {
                   <div className="d-flex flex-column align-items-center text-center p-3 py-5">
                     <img
                       className="rounded-circle mt-5"
-                      src={p.avatar}
+                      src={teste}
                       width="90"
                     />
                     <span className="font-weight-bold">
