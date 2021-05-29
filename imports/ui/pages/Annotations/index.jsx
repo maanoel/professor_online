@@ -23,6 +23,10 @@ const Annotations = () => {
     }
   });
 
+  const history = useTracker(() => {
+    return useHistory();
+  });
+
   const insert = () => {
     if (!_validaEmpty()) return;
 
@@ -37,7 +41,7 @@ const Annotations = () => {
         if (error) {
           alert(error);
         } else {
-          alert("criado com sucesso.");
+          history.push("/annotations-list");
         }
       }
     );

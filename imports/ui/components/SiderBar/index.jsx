@@ -71,14 +71,12 @@ const SiderBar = () => {
                 </a>
                 <ul className="collapse list-unstyled" id="teacherSubmenu">
                   <li>
-                    <Link to="/give-classes">Criar Classe</Link>
+                    <Link to="/give-classes">Criar sala de aula</Link>
                   </li>
                   <li>
-                    <Link to="/classes">Classes</Link>
+                    <Link to="/classes">Sala de aula ativa</Link>
                   </li>
-                  <li>
-                    <a href="#">Alunos</a>
-                  </li>
+
                   <li>
                     <a href="#">Pagamentos</a>
                   </li>

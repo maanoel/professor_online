@@ -54,6 +54,14 @@ const AnnotationList = () => {
               }}
             />
           ))}
+
+          {annotations.length == 0 ? (
+            <div className="alert alert-secondary" role="alert">
+              Nenhuma anotação foi inserida, que tal anotar algo novo?
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </main>
     </div>
