@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles.css";
 
 const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
@@ -23,13 +24,19 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
           <img src="https://i.ibb.co/3yRqZd4/whatsapp.png" alt="Chat" />
           Iniciar uma conversa
         </a>
-        <a onClick={onClickVideo} href="#" className = "button2">
-          <img src="https://img.icons8.com/small/20/000000/video-message.png" alt="Vídeo" />
+        <a onClick={onClickVideo} href="#" className="button2">
+          <img
+            src="https://img.icons8.com/small/20/000000/video-message.png"
+            alt="Vídeo"
+          />
           Iniciar chamada de Vídeo
         </a>
-        <a href="comments-list" className = "button3" >
-          <img src="https://img.icons8.com/fluent-systems-regular/20/000000/comments--v2.png" alt="Comentários" />
-          Fazer um comentário
+        <a href="comments-list" className="button3">
+          <img
+            src="https://img.icons8.com/fluent-systems-regular/20/000000/comments--v2.png"
+            alt="Comentários"
+          />
+          <Link to="/comments-list">Fazer um comentário</Link>
         </a>
       </footer>
     </article>
