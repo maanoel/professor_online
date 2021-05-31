@@ -3,11 +3,14 @@ import { ChatCollection } from "../../db/ChatCollection";
 
 Meteor.methods({
   "chatmessages.insert"(obj) {
-    // if (!this.userId) {
-    //   throw new Meteor.Error("Not authorized.");
-    // }
+    if (!this.userId) {
+      throw new Meteor.Error("Não autorizado.");
+    }
 
     let chatUserId = 0;
+
+    console.log(obj.user_destiny);
+    console.log(obj.user_origin);
 
     let chatUsers = ChatCollection.find({
       user_destiny: obj.user_destiny,

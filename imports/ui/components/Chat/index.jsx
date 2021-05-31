@@ -7,16 +7,21 @@ import "./styles.css";
 const Chat = ({ closeChat, userId }) => {
   const [message, setMessage] = useState("");
 
-  let messages = "";
-  useTracker(() => {
+  const messages = useTracker(() => {
     let user = Meteor.user();
     if (!user) return;
 
     Meteor.subscribe("chatmessages");
-    messages = ChatMessageCollection.find({
-      user_origin: { $in: [user._id, userId] },
-      user_destiny: { $in: [userId, user._id] },
+
+    const messageStartReceive = ChatMessageCollection.find({
+      $and: [{ user_origin: user._id }, { user_destiny: userId }],
     }).fetch();
+
+    const messageStartSend = ChatMessageCollection.find({
+      $and: [{ user_origin: userId }, { user_destiny: user._id }],
+    }).fetch();
+
+    return messageStartReceive.concat(messageStartSend);
   });
 
   const sendMessage = () => {
