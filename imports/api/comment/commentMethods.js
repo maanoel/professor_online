@@ -3,7 +3,7 @@ import { CommentCollection } from "../../db/CommentCollection";
 Meteor.methods({
   "comments.insert"(obj) {
     if (!this.userId) {
-      throw new Meteor.Error("Not authorized.");
+      throw new Meteor.Error("Não autorizado.");
     }
 
     CommentCollection.insert({

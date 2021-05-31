@@ -1,13 +1,19 @@
 .message-list-img {
-    min-width: 120px !important;
-    max-width: 120px;
-  }
+  min-width: 120px !important;
+  max-width: 120px;
+}
   
-  .list-group {
-    font-size: 18px;
-  }
-  .teacher-item
-  {
-    margin:auto;
-    
-  }
+.list-group {
+  font-size: 18px;
+}
+
+.teacher-item{
+  margin:auto;
+}
+
+.comment-content{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  float: right;
+  width:  70%;
+}

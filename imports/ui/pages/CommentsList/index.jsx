@@ -25,26 +25,18 @@ const CommentsList = () => {
     }).fetch();
   });
 
-  const history = useTracker(() => {
-    let history = useHistory();
-    return history;
-  });
-
-  const handlerClick = (id) => {
-    history.push("/annotation/");
-  };
-
   return (
     <div id="page-teacher-list">
       <SiderBar />
       <PageHeader title="Comentário sobre a aula de Fulano de tal"></PageHeader>
       <main>
-        <div className="list-group">
-             <Link to="/comments" className="new-comment">
-                Novo comentário
-              </Link>
-            <CommentItem/>
-         
+        <div className="list-group comment-list-content">
+         <Link to="/comments" className="new-comment">
+            Novo comentário
+          </Link>
+          {comments.map((comment)=> (
+            <CommentItem comment={comment.comment}/>
+          ))}
         </div>
       </main>
     </div>

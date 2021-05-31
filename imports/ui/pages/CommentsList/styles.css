@@ -14,13 +14,6 @@
   margin-left: 10%;
 }
 
-.comment-content{
-  margin-top: 5%;
-  margin-bottom: 5%;
-  float: right;
-  width:  70%;
-}
-
 .new-comment {
   float: left !important;
   width: 100%;
@@ -29,3 +22,11 @@
   margin-bottom: 15px;
 }
 
+.comment-item{
+  margin-bottom: 20px;
+  min-width: 100%;
+}
+
+.comment-list-content{
+  height: 100% !important;
+}
