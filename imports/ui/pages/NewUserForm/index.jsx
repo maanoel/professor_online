@@ -14,7 +14,7 @@ const NewUserForm = () => {
   const [password, setPassword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
   const [showDanger, setShowDanger] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleCreateUser(e) {
     e.preventDefault();
@@ -32,11 +32,11 @@ const NewUserForm = () => {
       },
       (err) => {
         if (err) {
-          _setMessageDanger(err);
+          _setMessageDanger(err.message);
         } else {
           Meteor.loginWithPassword(userName, password, (err) => {
             if (err) {
-              _setMessageDanger(err);
+              _setMessageDanger(err.message);
             } else {
               location.href = "study";
             }
@@ -146,7 +146,7 @@ const NewUserForm = () => {
               name="bio"
               label="Biografia"
               value={bio}
-              maxlength="500"
+              maxLength="500"
               onChange={(e) => setBio(e.target.value)}
             />
             {showDanger ? <FormDanger errorMessage={errorMessage} /> : ""}
