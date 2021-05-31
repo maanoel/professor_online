@@ -1,7 +1,11 @@
 import React from "react";
+import moment from 'moment';
 import "./styles.css";
 
 const MessageItem = ({ onClick, userOrigin, dateMessage }) => {
+
+  dateMessage =  moment(dateMessage, 'YYYY-MM-DD hh:mm:ss').format('DD/MM/YYYY hh:mm:ss');
+
   return (
     <article className="default-item">
       <footer>

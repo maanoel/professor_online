@@ -58,7 +58,7 @@ const MessagesList = () => {
           <MessageItem
             userOrigin={chat.user_origin}
             key={chat._id}
-            dateMessage={chat.last_message.toString()}
+            dateMessage={chat.last_message}
             onClick={(user_id) => {
               handlerClickChat(user_id);
             }}
