@@ -4,7 +4,7 @@ import "./styles.css";
 
 const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
   return (
-    <article className="teacher-item">
+    <article className="default-item">
       <header>
         <img src={teacher.avatar} alt={teacher.name} />
         <div>

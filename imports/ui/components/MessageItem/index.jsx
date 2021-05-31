@@ -3,7 +3,7 @@ import "./styles.css";
 
 const MessageItem = ({ onClick, userOrigin, dateMessage }) => {
   return (
-    <article className="teacher-item">
+    <article className="default-item">
       <footer>
         <img className="rounded-circle" src="https://i.imgur.com/O1RmJXT.jpg" />
         <p>

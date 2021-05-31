@@ -187,7 +187,7 @@ const ProfileForm = () => {
                         />
                       </div>
                     </div>
-                    <article className="teacher-item">
+                    <article className="default-item">
                       <footer>
                         <p>
                           <img
