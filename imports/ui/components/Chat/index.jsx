@@ -6,6 +6,7 @@ import "./styles.css";
 
 const Chat = ({ closeChat, userId }) => {
   const [message, setMessage] = useState("");
+  let userName = "";
 
   const messages = useTracker(() => {
     let user = Meteor.user();
@@ -13,7 +14,7 @@ const Chat = ({ closeChat, userId }) => {
 
     Meteor.subscribe("chatmessages");
 
-    return ChatMessageCollection.find(
+    const messages = ChatMessageCollection.find(
       {
         $or: [
           { $and: [{ user_origin: user._id }, { user_destiny: userId }] },
@@ -22,6 +23,18 @@ const Chat = ({ closeChat, userId }) => {
       },
       { sort: { last_message: -1 } }
     ).fetch();
+
+    if (messages) {
+      const message = messages.find((obj) => {
+        return obj.name_user_send != user.username;
+      });
+
+      if (message) {
+        userName = message.name_user_send;
+      }
+    }
+
+    return messages;
   });
 
   const sendMessage = () => {
@@ -53,14 +66,14 @@ const Chat = ({ closeChat, userId }) => {
   return (
     <div className="chat chat_support" id="chat_help">
       <div className="in_support_header">
-        <span>Nadigne gubert</span>
+        <span>{userName}</span>
         <div className="icon_close" onClick={() => closeChat()}>
           <img src="https://i.ibb.co/3TpDQ3y/close.png" />
         </div>
       </div>
       <div className="text_support">
         <div className="text_help">
-          <span>Conversa com Nadine Gubert</span>
+          <span>Conversa com {userName}</span>
           {messages.map((message) => (
             <div>
               <span>{message.name_user_send}</span>
