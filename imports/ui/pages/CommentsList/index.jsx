@@ -6,6 +6,7 @@ import SiderBar from "../../components/SiderBar";
 import TextItem from "../../components/TextItem";
 import { useHistory } from "react-router-dom";
 import CommentItem from "../../components/CommentItem"
+import { Link } from "react-router-dom";
 
 import "./styles.css";
 
@@ -39,7 +40,9 @@ const CommentsList = () => {
       <PageHeader title="Comentário sobre a aula de Fulano de tal"></PageHeader>
       <main>
         <div className="list-group">
-          
+             <Link to="/comments" className="new-comment">
+                Novo comentário
+              </Link>
             <CommentItem/>
          
         </div>

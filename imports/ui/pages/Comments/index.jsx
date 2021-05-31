@@ -34,7 +34,7 @@ const Comments = () => {
   return (
     <div className="comments">
       <SiderBar />
-      <PageHeader title="Comente sobre a sua aula."></PageHeader>
+      <PageHeader title="Comente sobre a sua aula com fulano de tal"></PageHeader>
       <main>
         <Input
           name="notes"

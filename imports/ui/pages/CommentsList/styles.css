@@ -6,3 +6,26 @@
 .list-group {
   font-size: 18px;
 }
+
+.comment-image{
+  float: left;
+  width: 20%;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.comment-content{
+  margin-top: 5%;
+  margin-bottom: 5%;
+  float: right;
+  width:  70%;
+}
+
+.new-comment {
+  float: left !important;
+  width: 100%;
+  text-align: end;
+  text-decoration: none;
+  margin-bottom: 15px;
+}
+
