@@ -9,20 +9,29 @@ Meteor.methods({
 
     let chatUserId = 0;
 
-    console.log(obj.user_destiny);
-    console.log(obj.user_origin);
-
-    let chatUsers = ChatCollection.find({
+    let chatUsers = ChatCollection.findOne({
       user_destiny: obj.user_destiny,
       user_origin: obj.user_origin,
     });
 
-    if (chatUsers.count() == 0) {
+    if (!chatUsers) {
       chatUserId = ChatCollection.insert({
         user_destiny: obj.user_destiny,
         user_origin: obj.user_origin,
+        last_message: new Date(),
       });
     } else {
+      ChatCollection.update(
+        {
+          _id: chatUsers._id,
+        },
+        {
+          $set: {
+            last_message: new Date(),
+          },
+        }
+      );
+
       chatUserId = chatUsers._id;
     }
 
@@ -32,6 +41,7 @@ Meteor.methods({
       user_origin: obj.user_origin,
       name_user_send: obj.name_user_send,
       chat_user_id: chatUserId,
+      created: new Date(),
     });
   },
 });

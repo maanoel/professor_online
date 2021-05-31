@@ -22,9 +22,12 @@ const MessagesList = () => {
 
     Meteor.subscribe("chats");
 
-    return ChatCollection.find({
-      user_destiny: Meteor.userId(),
-    }).fetch();
+    return ChatCollection.find(
+      {
+        user_destiny: Meteor.userId(),
+      },
+      { sort: { last_message: -1 } }
+    ).fetch();
   });
 
   function handlerClickChat(user_id) {
@@ -54,8 +57,8 @@ const MessagesList = () => {
         {chats.map((chat) => (
           <MessageItem
             userOrigin={chat.user_origin}
-            obj={chat}
             key={chat._id}
+            dateMessage={chat.last_message.toString()}
             onClick={(user_id) => {
               handlerClickChat(user_id);
             }}

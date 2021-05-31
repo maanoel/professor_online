@@ -1,14 +1,14 @@
 import React from "react";
 import "./styles.css";
 
-const MessageItem = ({ obj, onClick, userOrigin }) => {
+const MessageItem = ({ onClick, userOrigin, dateMessage }) => {
   return (
     <article className="teacher-item">
       <footer>
         <img className="rounded-circle" src="https://i.imgur.com/O1RmJXT.jpg" />
         <p>
           Horário da última mensagem
-          <strong>08/05/2021 11:00</strong>
+          <strong>{dateMessage}</strong>
         </p>
         <a
           onClick={() => {

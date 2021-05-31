@@ -13,15 +13,15 @@ const Chat = ({ closeChat, userId }) => {
 
     Meteor.subscribe("chatmessages");
 
-    const messageStartReceive = ChatMessageCollection.find({
-      $and: [{ user_origin: user._id }, { user_destiny: userId }],
-    }).fetch();
-
-    const messageStartSend = ChatMessageCollection.find({
-      $and: [{ user_origin: userId }, { user_destiny: user._id }],
-    }).fetch();
-
-    return messageStartReceive.concat(messageStartSend);
+    return ChatMessageCollection.find(
+      {
+        $or: [
+          { $and: [{ user_origin: user._id }, { user_destiny: userId }] },
+          { $and: [{ user_origin: userId }, { user_destiny: user._id }] },
+        ],
+      },
+      { sort: { last_message: -1 } }
+    ).fetch();
   });
 
   const sendMessage = () => {
