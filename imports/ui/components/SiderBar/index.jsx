@@ -2,6 +2,8 @@ import React, { Fragment } from "react";
 import { useTracker } from "meteor/react-meteor-data";
 import { Link } from "react-router-dom";
 import { MenuSvg } from "./svg/menu";
+import { ChatMessageCollection } from "../../../db/ChatMessageCollection";
+
 import "./styles.css";
 
 const SiderBar = () => {
@@ -10,6 +12,18 @@ const SiderBar = () => {
   const showSide = useTracker(() => {
     const user = !!Meteor.userId();
     return user;
+  });
+
+ const chatsMessage = useTracker(() => {
+   
+    Meteor.subscribe("chatmessages");
+
+    return ChatMessageCollection.find(
+      {
+        user_destiny: Meteor.userId(),
+        message_read: false,
+      },
+    ).fetch();
   });
 
   return (
@@ -90,7 +104,7 @@ const SiderBar = () => {
               </li>
               <li>
                 <Link to="/messages">
-                  Mensagens <span className="badge badge-light">2</span>
+                  Mensagens <span className="badge badge-light">{chatsMessage? chatsMessage.length: 0}</span>
                 </Link>
               </li>
               <li>

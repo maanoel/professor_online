@@ -6,7 +6,6 @@ Meteor.methods({
       throw new Meteor.Error("Not authorized.");
     }
 
-    console.log(obj);
     return ProfilesCollection.update(
       {
         userId: this.userId,

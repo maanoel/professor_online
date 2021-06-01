@@ -25,23 +25,34 @@ const Chat = ({ closeChat, userId }) => {
     ).fetch();
 
     if (messages) {
+
       const message = messages.find((obj) => {
         return obj.name_user_send != user.username;
       });
 
       if (message) {
         userName = message.name_user_send;
+
+        Meteor.call("chatmessages.messageread", {user_origin: message.user_origin},
+          (err) => {
+            if (err) alert(err);
+          }
+        );
       }
     }
+
 
     return messages;
   });
 
   const sendMessage = () => {
     if (!message || (message && message.trim().length == 0)) return;
-    setMessage("");
 
     const userLogado = Meteor.user();
+
+    setMessage("");
+
+    Meteor.subscribe("chatmessages");
     Meteor.call(
       "chatmessages.insert",
       {
