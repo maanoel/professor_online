@@ -7,11 +7,14 @@ import { useTracker } from "meteor/react-meteor-data";
 import { ClassesCollection } from "../../../db/ClassesCollection";
 import Chat from "../../components/Chat";
 import SiderBar from "../../components/SiderBar";
+import VideoService from "../../components/VideoService";
+
 import { useHistory } from "react-router-dom";
 
 import "./styles.css";
 
 const TeacherList = () => {
+
   const teachers = useTracker(() => {
     const history = useHistory();
 
@@ -43,6 +46,10 @@ const TeacherList = () => {
   function handlerClickChat(user_id) {
     setUserId(user_id);
     setShowChat(true);
+  }
+
+  function handlerClickVideo(){
+    new VideoService().run("https://proffy.daily.co/proffy");
   }
 
   return (
@@ -98,6 +105,7 @@ const TeacherList = () => {
             key={teacher._id}
             teacher={teacher}
             onClickChat={() => handlerClickChat(teacher.user_id)}
+            onClickVideo={() => handlerClickVideo()}
           />
         ))}
       </main>
