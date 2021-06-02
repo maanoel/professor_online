@@ -103,6 +103,9 @@ const SiderBar = () => {
                 <Link to="/annotations-list">Anotações</Link>
               </li>
               <li>
+                <a href="https://buy.stripe.com/test_cN2dRf3qW3igaFWaEG" target="_blank">Recarregar</a>
+              </li>
+              <li>
                 <Link to="/messages">
                   Mensagens <span className="badge badge-light">{chatsMessage? chatsMessage.length: 0}</span>
                 </Link>
