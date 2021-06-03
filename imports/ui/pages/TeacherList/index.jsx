@@ -53,51 +53,51 @@ const TeacherList = () => {
   }
 
   return (
-    <div id="page-teacher-list" className="contaienr">
+    <div id="page-teacher-list">
       <SiderBar />
       {showChat ? <Chat userId={userId} closeChat={closeChat} /> : ""}
 
       <PageHeader title="Estes são os Proffys disponívies.">
-        <form onSubmit={searchTeachers} id="search-teachers">
-          <Select
-            name="subject"
-            label="Matéria"
-            value={subject}
-            onChange={(e) => setSubject(e.target.value)}
-            options={[
-              { value: "Artes", label: "Artes" },
-              { value: "Quimica", label: "Quimica" },
-              { value: "Fisica", label: "Fisica" },
-              { value: "Portugues", label: "Portugues" },
-            ]}
-          />
+        <div className="filters">
+          <form onSubmit={searchTeachers} id="search-teachers">
+            <Select
+              name="subject"
+              label="Matéria"
+              value={subject}
+              onChange={(e) => setSubject(e.target.value)}
+              options={[
+                { value: "Artes", label: "Artes" },
+                { value: "Quimica", label: "Quimica" },
+                { value: "Fisica", label: "Fisica" },
+                { value: "Portugues", label: "Portugues" },
+              ]}
+            />
 
-          <Select
-            name="week-day"
-            label="Dia da Semana"
-            value={week_day}
-            onChange={(e) => setWeek_day(e.target.value)}
-            options={[
-              { value: "0", label: "Domingo" },
-              { value: "1", label: "Segunda-Feira" },
-              { value: "2", label: "Terça-Feira" },
-              { value: "3", label: "Quarta-Feira" },
-              { value: "4", label: "Quinta-Feira" },
-              { value: "5", label: "Sexta-Feira" },
-              { value: "6", label: "Sabado" },
-            ]}
-          />
+            <Select
+              name="week-day"
+              label="Status"
+              value={week_day}
+              onChange={(e) => setWeek_day(e.target.value)}
+              options={[
+                { value: "0", label: "Online" },
+                { value: "1", label: "Em Aula" },
+                { value: "2", label: "Offline" },
+              ]}
+            />
 
-          <Input
-            type="time"
-            name="time"
-            label="Hora"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-          />
+            <Input
+              className="teacher-name"
+              type="text"
+              name="teacher"
+              label="Nome do professor"
+              maxLength="35"
+              value={time}
+              onChange={(e) => setTime(e.target.value)}
+            />
 
-          <button type="submit">Buscar</button>
-        </form>
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
       </PageHeader>
       <main>
         {teachers.map((teacher) => (

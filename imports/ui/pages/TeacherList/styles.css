@@ -44,10 +44,15 @@
 
   #search-teachers {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     column-gap: 16px;
     position: absolute;
     bottom: -28px;
+
+  }
+
+  .teacher-name{
+    grid-column:span 2;
   }
 
   #search-teachers .input-block + .input-block,
@@ -57,7 +62,10 @@
 
   #page-teacher-list main {
     padding: 3.2rem 0;
-    max-width: 740px;
-    margin: 0 auto;
+    max-width: 70%;
+    margin-right: 8%;
   }
+
+
+
 }
