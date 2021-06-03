@@ -27,6 +27,7 @@ const TeacherForm = () => {
   const [bio, setBio] = useState("");
   const [subject, setSubject] = useState("");
   const [cost, setCost] = useState("");
+  const [description, setDescription] = useState("");
 
   const [scheduleItems, setScheduleItems] = useState([
     { week_day: 0, from: "", to: "" },
@@ -105,63 +106,30 @@ const TeacherForm = () => {
               ]}
             />
 
-            <Input
-              name="cost"
-              label="Custo da sua hora por aula"
-              value={cost}
-              onChange={(e) => setCost(e.target.value)}
-            />
-          </fieldset>
+              <Input
+                name="cost"
+                label="Preço da hora da aula em reais"
+                value={cost}
+                min="10" max="1000"
+                type="range"
+                onChange={(e) => setCost(e.target.value)}
+              />
 
-          <fieldset>
-            <legend>
-              Horários disponívies
-              <button type="button" onClick={addNewScheduleItem}>
-                + Novo horário
-              </button>
-            </legend>
+              <Input
+                name="cost"
+                value={"R$ " + cost}
+                min="10" max="1000"
+                type="text"
+                disabled
+                onChange={(e) => setCost(e.target.value)}
+              />
 
-            {scheduleItems.map((scheduleItem, index) => (
-              <div key={scheduleItem.week_day} className="schedule-item">
-                <Select
-                  name="week-day"
-                  label="Dia da Semana"
-                  value={scheduleItem.week_day}
-                  onChange={(e) =>
-                    setScheduleItemValue(index, "week_day", e.target.value)
-                  }
-                  options={[
-                    { value: "0", label: "Domingo" },
-                    { value: "1", label: "Segunda-Feira" },
-                    { value: "2", label: "Terça-Feira" },
-                    { value: "3", label: "Quarta-Feira" },
-                    { value: "4", label: "Quinta-Feira" },
-                    { value: "5", label: "Sexta-Feira" },
-                    { value: "6", label: "Sabado" },
-                  ]}
-                />
-
-                <Input
-                  name="from"
-                  label="Das"
-                  type="time"
-                  value={scheduleItem.from}
-                  onChange={(e) =>
-                    setScheduleItemValue(index, "from", e.target.value)
-                  }
-                />
-
-                <Input
-                  name="to"
-                  label="Até"
-                  type="time"
-                  value={scheduleItem.to}
-                  onChange={(e) =>
-                    setScheduleItemValue(index, "to", e.target.value)
-                  }
-                />
-              </div>
-            ))}
+             <TextArea
+                label="Descricação sobre sua aula"
+                maxLength="200"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
           </fieldset>
 
           <footer>

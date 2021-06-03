@@ -37,6 +37,14 @@ const CommentsList = () => {
           {comments.map((comment)=> (
             <CommentItem comment={comment.comment}/>
           ))}
+
+           {comments.length == 0 ? (
+            <div className="alert alert-secondary" role="alert">
+              Nenhum comentário foi inserida, que tal ser o primeiro a comentar sobre essa aula?
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </main>
     </div>

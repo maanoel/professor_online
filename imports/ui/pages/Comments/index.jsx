@@ -37,12 +37,14 @@ const Comments = () => {
       <PageHeader title="Comente sobre a sua aula com fulano de tal"></PageHeader>
       <main>
         <Input
+          maxLength="50"
           name="notes"
           label="Título"
           onChange={(e) => setTitle(e.target.value)}
         />
         <div className="text-area-anotation">
           <TextArea
+            maxLength="300"
             label="Comentário"
             onChange={(e) => setComment(e.target.value)}
           />
