@@ -11,6 +11,8 @@ import SiderBar from "../../components/SiderBar";
 import "./styles.css";
 
 const TeacherForm = () => {
+  const historyAfterClick = useTracker(()=> useHistory() );
+
   useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
@@ -66,14 +68,15 @@ const TeacherForm = () => {
         if (error) {
           alert(error);
         } else {
-          scheduleItems.forEach((item) => (item.classeId = id));
+          historyAfterClick.push("study");
+          //scheduleItems.forEach((item) => (item.classeId = id));
         }
       }
     );
 
-    Meteor.call("schedules.insert", scheduleItems, (error, id) => {
-      history.push("study");
-    });
+   // Meteor.call("schedules.insert", scheduleItems, (error, id) => {
+    //  history.push("study");
+    //});
   }
 
   return (
@@ -167,7 +170,7 @@ const TeacherForm = () => {
                 src="https://i.ibb.co/prmTsbr/warning.png"
                 alt="Aviso importante"
               />
-              Important!
+
               <br />
               Preencha todos os dados
             </p>
