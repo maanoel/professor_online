@@ -54,16 +54,26 @@ const MessagesList = () => {
       )}
       <PageHeader title="Aqui você ler as mensagens que te enviaram"></PageHeader>
       <main>
-        {chats.map((chat) => (
-          <MessageItem
-            userOrigin={chat.user_origin}
-            key={chat._id}
-            dateMessage={chat.last_message}
-            onClick={(user_id) => {
-              handlerClickChat(user_id);
-            }}
-          />
-        ))}
+        <div className="list-group">
+          {chats.map((chat) => (
+            <MessageItem
+              userOrigin={chat.user_origin}
+              key={chat._id}
+              dateMessage={chat.last_message}
+              onClick={(user_id) => {
+                handlerClickChat(user_id);
+              }}
+            />
+          ))}
+
+          {chats.length == 0 ? (
+              <div className="alert alert-secondary" role="alert">
+                Você não possui nenhuma mensagem.
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
       </main>
     </div>
   );
