@@ -64,20 +64,16 @@ const TeacherForm = () => {
         bio: bio,
         subject: subject,
         cost: Number(cost),
+        description: description
       },
       (error, id) => {
         if (error) {
           alert(error);
         } else {
           historyAfterClick.push("study");
-          //scheduleItems.forEach((item) => (item.classeId = id));
         }
       }
     );
-
-   // Meteor.call("schedules.insert", scheduleItems, (error, id) => {
-    //  history.push("study");
-    //});
   }
 
   return (
@@ -116,12 +112,11 @@ const TeacherForm = () => {
               />
 
               <Input
-                name="cost"
+                name="costValue"
                 value={"R$ " + cost}
                 min="10" max="1000"
                 type="text"
                 disabled
-                onChange={(e) => setCost(e.target.value)}
               />
 
              <TextArea
