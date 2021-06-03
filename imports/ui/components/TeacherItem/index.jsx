@@ -7,7 +7,7 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
   return (
     <article className="default-item">
       <header>
-        <img src={teacher.avatar} alt={teacher.name} />
+        <img src="https://i.imgur.com/O1RmJXT.jpg"  alt={teacher.name} />
         <div>
           <strong>{teacher.name}</strong>
           <span>{teacher.subject}</span>
