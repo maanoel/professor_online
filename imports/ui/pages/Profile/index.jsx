@@ -37,28 +37,28 @@ const ProfileForm = () => {
     );
   };
 
-  setName = (valor) => {
-    profile.name = valor;
+  setName = (value) => {
+    profile.name = value;
   };
 
-  setSurName = (valor) => {
-    profile.surname = valor;
+  setSurName = (value) => {
+    profile.surname = value;
   };
 
-  setHeadLine = (valor) => {
-    profile.headline = valor;
+  setHeadLine = (value) => {
+    profile.headline = value;
   };
 
-  setCity = (valor) => {
-    profile.city = valor;
+  setCity = (value) => {
+    profile.city = value;
   };
 
-  setState = (valor) => {
-    profile.state = valor;
+  setState = (value) => {
+    profile.state = value;
   };
 
-  setAvatar = (valor) => {
-    profile.avatar = valor;
+  setAvatar = (value) => {
+    profile.avatar = value;
   };
 
   changeImage = () => {

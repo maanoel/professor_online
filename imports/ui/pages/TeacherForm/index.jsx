@@ -8,73 +8,95 @@ import { useTracker } from "meteor/react-meteor-data";
 import { useHistory } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import SiderBar from "../../components/SiderBar";
+import { ClassesCollection } from "../../../db/ClassesCollection";
+
 import "./styles.css";
 
 const TeacherForm = () => {
   const historyAfterClick = useTracker(()=> useHistory() );
+  const [costValue, setCostValue] = useState(0);
+  const [descriptionValue, setdescriptionValue] = useState("");
+  const [subjectValue, setSubjectValue] = useState(0);
 
-  useTracker(() => {
+  const teacherClass = useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
       history.push("/login");
       return [];
     }
+
+    Meteor.subscribe("classes");
+
+    const collectionFind = ClassesCollection.findOne({
+      userId: Meteor.userId(),
+    })
+    
+    if(!collectionFind)
+      return [collectionFind];
+    else{
+      return collectionFind;
+    }
   });
 
-  const [name, setName] = useState("");
-  const [avatar, setAvatar] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
-  const [bio, setBio] = useState("");
-  const [subject, setSubject] = useState("");
-  const [cost, setCost] = useState("");
-  const [description, setDescription] = useState("");
-
-  const [scheduleItems, setScheduleItems] = useState([
-    { week_day: 0, from: "", to: "" },
-  ]);
-
-  function addNewScheduleItem() {
-    setScheduleItems([...scheduleItems, { week_day: 0, from: "", to: "" }]);
+  setSubject = (value) => {
+    setSubjectValue(value);
+    if(Array.isArray(teacherClass)){
+      insert();
+    }else{
+      teacherClass.subject = value;
+    }
   }
 
-  function setScheduleItemValue(position, field, value) {
-    const updatedScheduleItems = scheduleItems.map((scheduleItem, index) => {
-      if (index === position) {
-        return {
-          ...scheduleItem,
-          [field]: value,
-        };
-      }
+  setCost = (value) => {  
+    setCostValue(value) ;
+    if(Array.isArray(teacherClass)){
+      insert();
+    }else{
+      teacherClass.cost = Number(value);
+    }
+  }
 
-      return scheduleItem;
-    });
-
-    setScheduleItems(updatedScheduleItems);
+  setDescription = (value) => {
+    setdescriptionValue(value) ;
+    if(Array.isArray(teacherClass)){
+      insert();
+    }else{
+      teacherClass.description = value;
+    }
   }
 
   function handleCreateClass(e) {
     e.preventDefault();
+    update();
+  }
 
-    Meteor.call(
+  const insert = () => {
+     Meteor.call(
       "classes.insert",
       {
-        name: name,
-        avatar: avatar,
-        whatsapp: whatsapp,
-        bio: bio,
-        subject: subject,
-        cost: Number(cost),
-        description: description
+        subject: "",
+        cost: 0,
+        description: ""
       },
       (error, id) => {
         if (error) {
           alert(error);
         } else {
-          historyAfterClick.push("study");
         }
       }
     );
   }
+
+  const update = () => {
+    Meteor.call("classes.update", {
+      subject: subjectValue,
+      cost: costValue,
+      description: descriptionValue
+    });
+    alert(
+      "Dados atualizados com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
+    );
+  };
 
   return (
     <div id="page-teacher-form" >
@@ -83,7 +105,8 @@ const TeacherForm = () => {
         title="Que incrível que você quer dar aulas."
         description="O primeiro passo é preencher esse formulário de inscrição"
       />
-
+       {teacherClass
+        ? [teacherClass].map((p) => (
       <main>
         <form onSubmit={handleCreateClass}>
           <fieldset>
@@ -92,7 +115,7 @@ const TeacherForm = () => {
             <Select
               name="subject"
               label="Matéria"
-              value={subject}
+              defaultValue={p.subject}
               onChange={(e) => setSubject(e.target.value)}
               options={[
                 { value: "Artes", label: "Artes" },
@@ -105,7 +128,7 @@ const TeacherForm = () => {
               <Input
                 name="cost"
                 label="Preço da hora da aula em reais"
-                value={cost}
+                defaultValue={p.cost}
                 min="10" max="1000"
                 type="range"
                 onChange={(e) => setCost(e.target.value)}
@@ -113,16 +136,15 @@ const TeacherForm = () => {
 
               <Input
                 name="costValue"
-                value={"R$ " + cost}
+                value={"R$ " + (costValue > 0 ? costValue: p.cost ) }
                 min="10" max="1000"
                 type="text"
                 disabled
               />
-
              <TextArea
-                label="Descricação sobre sua aula"
+                label="Descreve sobre sua aula"
                 maxLength="200"
-                value={description}
+                defaultValue={p.description}
                 onChange={(e) => setDescription(e.target.value)}
               />
           </fieldset>
@@ -141,6 +163,8 @@ const TeacherForm = () => {
           </footer>
         </form>
       </main>
+      ))
+        : "Carregando"}
     </div>
   );
 };
