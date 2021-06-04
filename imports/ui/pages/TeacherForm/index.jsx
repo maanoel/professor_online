@@ -15,8 +15,8 @@ import "./styles.css";
 const TeacherForm = () => {
   const historyAfterClick = useTracker(()=> useHistory() );
   const [costValue, setCostValue] = useState(0);
+  const [titleValue, setTitleValue] = useState("");
   const [descriptionValue, setdescriptionValue] = useState("");
-  const [subjectValue, setSubjectValue] = useState(0);
 
   const teacherClass = useTracker(() => {
     const history = useHistory();
@@ -29,7 +29,7 @@ const TeacherForm = () => {
 
     const collectionFind = ClassesCollection.findOne({
       userId: Meteor.userId(),
-    })
+    });
     
     if(!collectionFind)
       return [collectionFind];
@@ -38,31 +38,19 @@ const TeacherForm = () => {
     }
   });
 
-  setSubject = (value) => {
-    setSubjectValue(value);
-    if(Array.isArray(teacherClass)){
-      insert();
-    }else{
-      teacherClass.subject = value;
-    }
-  }
-
   setCost = (value) => {  
     setCostValue(value) ;
-    if(Array.isArray(teacherClass)){
-      insert();
-    }else{
-      teacherClass.cost = Number(value);
-    }
+    teacherClass.cost = value;
+  }
+
+  setTitle = (value) => {  
+    setTitleValue(value) ;
+    teacherClass.title = value;
   }
 
   setDescription = (value) => {
     setdescriptionValue(value) ;
-    if(Array.isArray(teacherClass)){
-      insert();
-    }else{
-      teacherClass.description = value;
-    }
+    teacherClass.description = value;
   }
 
   function handleCreateClass(e) {
@@ -74,9 +62,9 @@ const TeacherForm = () => {
      Meteor.call(
       "classes.insert",
       {
-        subject: "",
-        cost: 0,
-        description: ""
+        title: titleValue? titleValue: teacherClass.title,
+        cost: costValue? costValue: teacherClass.costValue,
+        description: descriptionValue? descriptionValue: teacherClass.description,
       },
       (error, id) => {
         if (error) {
@@ -88,11 +76,15 @@ const TeacherForm = () => {
   }
 
   const update = () => {
-    Meteor.call("classes.update", {
-      subject: subjectValue,
-      cost: costValue,
-      description: descriptionValue
-    });
+    if(Array.isArray(teacherClass)){
+      insert();
+    }{
+      Meteor.call("classes.update", {
+        cost: costValue? costValue : teacherClass.cost,
+        description: descriptionValue? descriptionValue : teacherClass.description,
+        title: titleValue? titleValue: teacherClass.title
+      });
+  }
     alert(
       "Dados atualizados com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
     );
@@ -112,19 +104,17 @@ const TeacherForm = () => {
           <fieldset>
             <legend>Sobre a aula</legend>
 
-            <Select
-              name="subject"
-              label="Matéria"
-              defaultValue={p.subject}
-              onChange={(e) => setSubject(e.target.value)}
-              options={[
-                { value: "Artes", label: "Artes" },
-                { value: "Quimica", label: "Quimica" },
-                { value: "Fisica", label: "Fisica" },
-                { value: "Portugues", label: "Portugues" },
-              ]}
-            />
+              <Input
+                name="title"
+                label="Título da sua aula"
+                maxLength="150"
+                minLength="10"
+                defaultValue={p.title}
+                type="text"
+                onChange={(e) => setTitle(e.target.value)}
+              />
 
+           
               <Input
                 name="cost"
                 label="Preço da hora da aula em reais"
@@ -143,6 +133,7 @@ const TeacherForm = () => {
               />
              <TextArea
                 label="Descreve sobre sua aula"
+                minLength="50"
                 maxLength="200"
                 defaultValue={p.description}
                 onChange={(e) => setDescription(e.target.value)}

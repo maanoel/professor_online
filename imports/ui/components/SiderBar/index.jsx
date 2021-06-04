@@ -85,7 +85,7 @@ const SiderBar = () => {
                 </a>
                 <ul className="collapse list-unstyled" id="teacherSubmenu">
                   <li>
-                    <Link to="/give-classes">Criar sala de aula</Link>
+                    <Link to="/give-classes">Sala de aula</Link>
                   </li>
 
                   <li>
@@ -107,10 +107,6 @@ const SiderBar = () => {
                   Mensagens <span className="badge badge-light">{chatsMessage? chatsMessage.length: 0}</span>
                 </Link>
               </li>
-              <li>
-                <a href="#">Configurações</a>
-              </li>
-
               <li>
                 <Link to="/login" onClick={() => logout()}>
                   Sair

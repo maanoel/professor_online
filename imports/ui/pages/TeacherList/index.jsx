@@ -27,16 +27,14 @@ const TeacherList = () => {
     return ClassesCollection.find({}).fetch();
   });
 
-  // const [teachers, setTeachers] = useState(classes);
   const [userId, setUserId] = useState(0);
   const [subject, setSubject] = useState("");
-  const [week_day, setWeek_day] = useState("");
+  const [status, setStatus] = useState("");
   const [time, setTime] = useState("");
   const [showChat, setShowChat] = useState(false);
 
   function searchTeachers(e) {
     e.preventDefault();
-    // setTeachers(classes);
   }
 
   function closeChat() {
@@ -67,17 +65,17 @@ const TeacherList = () => {
               onChange={(e) => setSubject(e.target.value)}
               options={[
                 { value: "Artes", label: "Artes" },
-                { value: "Quimica", label: "Quimica" },
+                { value: "0", label: "Quimica" },
                 { value: "Fisica", label: "Fisica" },
                 { value: "Portugues", label: "Portugues" },
               ]}
             />
 
             <Select
-              name="week-day"
+              name="status"
               label="Status"
-              value={week_day}
-              onChange={(e) => setWeek_day(e.target.value)}
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
               options={[
                 { value: "0", label: "Online" },
                 { value: "1", label: "Em Aula" },

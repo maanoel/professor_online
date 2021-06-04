@@ -9,12 +9,12 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
       <header>
         <img src="https://i.imgur.com/O1RmJXT.jpg"  alt={teacher.name} />
         <div>
-          <strong>{teacher.name}</strong>
+          <strong>{teacher.title}</strong>
           <span>{teacher.subject}</span>
         </div>
       </header>
 
-      <p>{teacher.bio}</p>
+      <p>{teacher.description}</p>
 
       <footer>
         <p>

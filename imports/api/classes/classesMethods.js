@@ -10,7 +10,8 @@ Meteor.methods({
       subject: obj.subject,
       cost: obj.cost,
       userId: this.userId,
-      description: obj.description
+      description: obj.description,
+      title: obj.title
     });
   },
    "classes.update"(obj) {
@@ -26,7 +27,8 @@ Meteor.methods({
         $set: {
           subject: obj.subject,
           cost: obj.cost,
-          description: obj.description
+          description: obj.description,
+          title: obj.title
         },
       }
     );
