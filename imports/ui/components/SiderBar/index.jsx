@@ -87,9 +87,6 @@ const SiderBar = () => {
                   <li>
                     <Link to="/give-classes">Criar sala de aula</Link>
                   </li>
-                  <li>
-                    <Link to="/classes">Sala de aula ativa</Link>
-                  </li>
 
                   <li>
                     <a href="#">Pagamentos</a>
