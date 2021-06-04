@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import { Meteor } from "meteor/meteor";
 import SiderBar from "../../components/SiderBar";
 import { ClassesCollection } from "../../../db/ClassesCollection";
+import FormSuccess from "../../components/Alerts/FormSuccess";
 
 import "./styles.css";
 
@@ -17,6 +18,8 @@ const TeacherForm = () => {
   const [costValue, setCostValue] = useState(0);
   const [titleValue, setTitleValue] = useState("");
   const [descriptionValue, setdescriptionValue] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(false);
 
   const teacherClass = useTracker(() => {
     const history = useHistory();
@@ -58,6 +61,11 @@ const TeacherForm = () => {
     update();
   }
 
+  function _setMessageSucess(message) {
+    setShowAlert(true);
+    setAlertMessage(message);
+  }
+
   const insert = () => {
      Meteor.call(
       "classes.insert",
@@ -70,6 +78,7 @@ const TeacherForm = () => {
         if (error) {
           alert(error);
         } else {
+          _setMessageSucess("As informações sobre a sua aula foram inseridas e já podem ser visualizadas pelos alunos")
         }
       }
     );
@@ -83,11 +92,13 @@ const TeacherForm = () => {
         cost: costValue? costValue : teacherClass.cost,
         description: descriptionValue? descriptionValue : teacherClass.description,
         title: titleValue? titleValue: teacherClass.title
-      });
-  }
-    alert(
-      "Dados atualizados com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
-    );
+      }, (error)=> { 
+        if(error)
+          alert(error); 
+        else 
+          _setMessageSucess("As informações sobre a sua aula foram inseridas e já podem ser visualizadas pelos alunos");
+        });
+    }
   };
 
   return (
@@ -140,6 +151,8 @@ const TeacherForm = () => {
               />
           </fieldset>
 
+          {showAlert ? <FormSuccess message={alertMessage} /> : ""}
+
           <footer>
             <p>
               <img
@@ -150,7 +163,10 @@ const TeacherForm = () => {
               <br />
               Preencha todos os dados
             </p>
+
+
             <button type="submit">Salvar cadastro</button>
+
           </footer>
         </form>
       </main>

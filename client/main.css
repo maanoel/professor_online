@@ -284,3 +284,13 @@ body {
     margin-right: 1.6rem;
   }
 }
+
+.user-form {
+  height: 70px;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 25px;
+}
+
+
+

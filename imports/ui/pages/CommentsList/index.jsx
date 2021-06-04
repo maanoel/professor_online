@@ -22,7 +22,7 @@ const CommentsList = () => {
 
     return CommentCollection.find({
       userId: Meteor.userId(),
-    }).fetch();
+    }, {sort: {createdAt: -1}}).fetch();
   });
 
   return (
