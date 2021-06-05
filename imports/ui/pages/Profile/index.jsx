@@ -7,8 +7,12 @@ import Select from "../../components/Select";
 import { useHistory } from "react-router-dom";
 import { ProfilesCollection } from "../../../db/ProfilesCollection";
 import Images from "../../../db/ImageCollection";
+import FormSuccess from "../../components/Alerts/FormSuccess";
 
 const ProfileForm = () => {
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(false);
+
   const [teste, setTeste] = useState("");
   const profile = useTracker(() => {
     const history = useHistory();
@@ -32,9 +36,10 @@ const ProfileForm = () => {
       city: profile.city,
       state: profile.state,
     });
-    alert(
-      "Dados atualizados com sucesso, ok ta bizarro essa mensgem, depois vamos criar um componente de notificação ;)"
-    );
+    
+    window.scrollTo(-1,-1);
+    _setMessageSucess("As informações do seu perfil foram atualizadas.");
+
   };
 
   setName = (value) => {
@@ -65,6 +70,11 @@ const ProfileForm = () => {
     document.getElementById("fileInput").click();
   };
 
+  function _setMessageSucess(message) {
+    setShowAlert(true);
+    setAlertMessage(message);
+  }
+
   changeFile = (e) => {
     Meteor.subscribe("files.images.all");
 
@@ -94,6 +104,16 @@ const ProfileForm = () => {
       upload.start();
     }
   };
+
+  function scrollToAlert(){
+    const alertDom = document.querySelector('#sucess-alert');
+
+    if(alertDom){
+      alertDom.scrollIntoView();
+    }
+  }
+
+  scrollToAlert();
 
   return (
     <div>
@@ -197,6 +217,7 @@ const ProfileForm = () => {
                           Preencha todos os dados
                         </p>
 
+
                         <a
                           onClick={() => {
                             update();
@@ -206,6 +227,9 @@ const ProfileForm = () => {
                           Salvar dados
                         </a>
                       </footer>
+
+                      {showAlert ? <FormSuccess message={alertMessage} /> : ""}
+
                     </article>
                   </div>
                 </div>
