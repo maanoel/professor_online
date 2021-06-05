@@ -28,7 +28,7 @@ const Annotations = () => {
   });
 
   const insert = () => {
-    if (!_validaEmpty()) return;
+    if (!_validEmpty()) return;
 
     Meteor.subscribe("annotations");
     Meteor.call(
@@ -47,13 +47,13 @@ const Annotations = () => {
     );
   };
 
-  function _validaEmpty() {
-    if (annotationTitle == "" || annotationTitle == null) {
+  function _validEmpty() {
+    if (!annotationTitle || annotationTitle == "") {
       _setMessageDanger("Informe um titúlo para sua anotação.");
       return false;
     }
 
-    if (annotation == "" || annotation == null) {
+    if (!annotation || annotation == "") {
       _setMessageDanger("Informe algo na sua anotação.");
       return false;
     }

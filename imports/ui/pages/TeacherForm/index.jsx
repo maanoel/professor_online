@@ -10,18 +10,24 @@ import { Meteor } from "meteor/meteor";
 import SiderBar from "../../components/SiderBar";
 import { ClassesCollection } from "../../../db/ClassesCollection";
 import FormSuccess from "../../components/Alerts/FormSuccess";
+import FormDanger from "../../components/Alerts/FormDanger";
 
 import "./styles.css";
 
 const TeacherForm = () => {
-  const historyAfterClick = useTracker(()=> useHistory() );
-  const [costValue, setCostValue] = useState(0);
-  const [titleValue, setTitleValue] = useState("");
-  const [descriptionValue, setdescriptionValue] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState(false);
+   const historyAfterClick = useTracker(()=> useHistory() );
+   const [costValue, setCostValue] = useState(0);
+   const [titleValue, setTitleValue] = useState("");
+   const [descriptionValue, setDescriptionValue] = useState("");
+   const [showAlert, setShowAlert] = useState(false);
+   const [alertMessage, setAlertMessage] = useState(false);
+   const [errorMessage, setErrorMessage] = useState(false);
+   const [showDanger, setShowDanger] = useState(false);
+   const [titleValueHasChanged, setTitleValueHasChanged] = useState(false);
+   const [costValueHasChanged, setCostValueHasChanged] = useState(false);
+   const [descriptionValueHasChanged, setDescriptionValueHasChanged] = useState(false);
 
-  const teacherClass = useTracker(() => {
+   const teacherClass = useTracker(() => {
     const history = useHistory();
     if (!Meteor.userId()) {
       history.push("/login");
@@ -34,8 +40,9 @@ const TeacherForm = () => {
       userId: Meteor.userId(),
     });
     
-    if(!collectionFind)
+    if(!collectionFind){
       return [collectionFind];
+    }
     else{
       return collectionFind;
     }
@@ -47,13 +54,25 @@ const TeacherForm = () => {
   }
 
   setTitle = (value) => {  
+    setTitleValueHasChanged(true);
     setTitleValue(value) ;
     teacherClass.title = value;
   }
 
+  titleKeyUp = (value) => 
+  {
+     setTitleValueHasChanged(true);
+  }
+
   setDescription = (value) => {
-    setdescriptionValue(value) ;
+    setDescriptionValueHasChanged(true);
+    setDescriptionValue(value);
     teacherClass.description = value;
+  }
+
+  descriptionKeyUp = (value) => 
+  {
+     setDescriptionValueHasChanged(true);
   }
 
   function handleCreateClass(e) {
@@ -63,7 +82,33 @@ const TeacherForm = () => {
 
   function _setMessageSucess(message) {
     setShowAlert(true);
+    setShowDanger(false);
     setAlertMessage(message);
+  }
+
+  function _setMessageDanger(errorMessage) {
+    setShowDanger(true);
+    setShowAlert(false);
+    setErrorMessage(errorMessage);
+  }
+
+  function _validEmpty() {
+    if (costValueHasChanged && (!costValue || costValue == 0)) {
+      _setMessageDanger("Você precisa informar o preço da sua aula.");
+      return false;
+    }
+
+    if (titleValueHasChanged && (!titleValue || titleValue == "")) {
+      _setMessageDanger("Você precisa informar o título da sua aula.");
+      return false;
+    }
+
+    if (descriptionValueHasChanged && (!descriptionValue || descriptionValue == "")) {
+      _setMessageDanger("Você precisa informar a descrição da sua aula.");
+      return false;
+    }
+
+    return true;
   }
 
   const insert = () => {
@@ -71,7 +116,7 @@ const TeacherForm = () => {
       "classes.insert",
       {
         title: titleValue? titleValue: teacherClass.title,
-        cost: costValue? costValue: teacherClass.costValue,
+        cost: costValue? costValue: teacherClass.cost,
         description: descriptionValue? descriptionValue: teacherClass.description,
       },
       (error, id) => {
@@ -85,9 +130,14 @@ const TeacherForm = () => {
   }
 
   const update = () => {
-    if(Array.isArray(teacherClass)){
+    if(!_validEmpty()) return;
+
+    if(Array.isArray(teacherClass))
+    {
       insert();
-    }{
+    }
+    else
+    {
       Meteor.call("classes.update", {
         cost: costValue? costValue : teacherClass.cost,
         description: descriptionValue? descriptionValue : teacherClass.description,
@@ -123,6 +173,7 @@ const TeacherForm = () => {
                 defaultValue={p.title}
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
+                onKeyUp={(e) => titleKeyUp(e.target.value)}
               />
 
            
@@ -148,10 +199,12 @@ const TeacherForm = () => {
                 maxLength="200"
                 defaultValue={p.description}
                 onChange={(e) => setDescription(e.target.value)}
+                onKeyUp={(e)=> descriptionKeyUp(e.target.value)}
               />
           </fieldset>
 
           {showAlert ? <FormSuccess message={alertMessage} /> : ""}
+          {showDanger ? <FormDanger errorMessage={errorMessage} /> : ""}
 
           <footer>
             <p>
