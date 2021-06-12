@@ -11,3 +11,7 @@
 .button3 {
   width: 20px;
 }
+
+.teacher-item-text{
+  word-break: break-word;
+}
