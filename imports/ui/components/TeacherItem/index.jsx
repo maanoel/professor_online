@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import ChatSvg from '../../../../public/images/icons/chatsvg' 
+import VideoSvg from '../../../../public/images/icons/videosvg' 
+import CommentSvg from '../../../../public/images/icons/commentsvg' 
 
 import "./styles.css";
 
@@ -13,32 +16,24 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
           <span>{teacher.subject}</span>
         </div>
       </header>
-
-      <p>{teacher.description}</p>
-
+      <p className="teacher-item-text">{teacher.description}</p>
       <footer>
         <p>
           Preço/hora
           <strong>R$ {teacher.cost}</strong>
         </p>
-        <a onClick={onClickChat} href="#" className="button1">
-          <img src="https://i.ibb.co/3yRqZd4/whatsapp.png" alt="Chat" />
+        <a onClick={onClickChat} href="#" >
+          <span dangerouslySetInnerHTML={{__html: ChatSvg}} alt="chat"></span>
           Conversar
         </a>
-        <a onClick={onClickVideo} href="#" className="button2">
-          <img
-            src="https://img.icons8.com/small/20/000000/video-message.png"
-            alt="Vídeo"
-          />
+        <a onClick={onClickVideo} href="#" >
+          <span dangerouslySetInnerHTML={{__html: VideoSvg}} alt="video"></span>
           Chamada de vídeo
         </a>
-        <a href="comments-list" className="button3">
-          <img
-            src="https://img.icons8.com/fluent-systems-regular/20/000000/comments--v2.png"
-            alt="Comentários"
-          />
-          <Link to="/comments-list">Comentar</Link>
-        </a>
+          <Link to="/comments-list">
+            <span dangerouslySetInnerHTML={{__html: CommentSvg}} alt="comentários"></span>
+            Comentar
+          </Link>
       </footer>
     </article>
   );
