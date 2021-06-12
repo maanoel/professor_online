@@ -77,18 +77,18 @@ const Chat = ({ closeChat, userId }) => {
   return (
     <div className="chat chat_support" id="chat_help">
       <div className="in_support_header">
-        <span>{userName}</span>
+        <span>{userName? userName: `Aguardando respota do professor`}</span>
         <div className="icon_close" onClick={() => closeChat()}>
           <img src="https://i.ibb.co/3TpDQ3y/close.png" />
         </div>
       </div>
       <div className="text_support">
         <div className="text_help">
-          <span>Conversa com {userName}</span>
+          <span>{userName? `Conversa com ${userName} ` : "Escreva algo para a iniciar a conversa"}</span>
           {messages.map((message) => (
             <div>
               <span>{message.name_user_send}</span>
-              <p key={message._id} name="txt_help">
+              <p key={message._id} className="txt_help" name="txt_help">
                 {message.message}
               </p>
             </div>
