@@ -28,6 +28,19 @@ export const LoginForm = () => {
     });
   };
 
+  const loginWithFacebook = () => {
+    Meteor.loginWithFacebook(
+      { requestPermissions: ["public_profile", "email"] },
+      function (err) {
+        if (err) {
+          console.log("Handle errors here: ", err);
+        } else {
+          history.push("give-classes");
+        }
+      }
+    );
+  };
+
   return (
     <div className="content">
       <div className="container">
@@ -98,7 +111,11 @@ export const LoginForm = () => {
                     — ou entrar com —
                   </span>
                   <div className="social-login">
-                    <a href="#" className="facebook">
+                    <a
+                      href="#"
+                      onClick={loginWithFacebook}
+                      className="facebook"
+                    >
                       <span className="icon-facebook mr-3"></span>
                     </a>
                     <a href="#" className="twitter">

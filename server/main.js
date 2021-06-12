@@ -33,3 +33,13 @@ Meteor.methods({
     return Assets.getText(data.path);
   },
 });
+
+ServiceConfiguration.configurations.remove({
+  service: "facebook",
+});
+
+ServiceConfiguration.configurations.insert({
+  service: "facebook",
+  appId: "327300232286572",
+  secret: "dddcba69cd8f5b7efd52ab0bd50bbe0b",
+});
