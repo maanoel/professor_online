@@ -14,7 +14,6 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 
 const TeacherList = () => {
-
   const teachers = useTracker(() => {
     const history = useHistory();
 
@@ -46,7 +45,7 @@ const TeacherList = () => {
     setShowChat(true);
   }
 
-  function handlerClickVideo(){
+  function handlerClickVideo() {
     new VideoService().run("https://proffy.daily.co/proffy");
   }
 
@@ -97,7 +96,18 @@ const TeacherList = () => {
           </form>
         </div>
       </PageHeader>
+
       <main>
+
+        <p>
+          Esses são os professores disponíveis na plataforma. Escolha um dos
+          professores e inicie um chamada de vídeo
+        </p>
+        <p>
+          Os primeiros 5 minutos serão grátis, depois disso, será cobrado o valor
+          da hora, especificado pelo professor.
+        </p>
+
         {teachers.map((teacher) => (
           <TeacherItem
             key={teacher._id}
@@ -107,6 +117,7 @@ const TeacherList = () => {
           />
         ))}
       </main>
+
     </div>
   );
 };
