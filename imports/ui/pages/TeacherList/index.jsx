@@ -92,20 +92,21 @@ const TeacherList = () => {
               onChange={(e) => setTime(e.target.value)}
             />
 
-            <button type="submit">Buscar</button>
+            <button class="search-button" type="submit">
+              Buscar
+            </button>
           </form>
         </div>
       </PageHeader>
 
       <main>
-
         <p>
           Esses são os professores disponíveis na plataforma. Escolha um dos
           professores e inicie um chamada de vídeo
         </p>
         <p>
-          Os primeiros 5 minutos serão grátis, depois disso, será cobrado o valor
-          da hora, especificado pelo professor.
+          Os primeiros 5 minutos serão grátis, depois disso, será cobrado o
+          valor da hora, especificado pelo professor.
         </p>
 
         {teachers.map((teacher) => (
@@ -117,7 +118,6 @@ const TeacherList = () => {
           />
         ))}
       </main>
-
     </div>
   );
 };

@@ -55,8 +55,8 @@ const TeacherItem = ({ teacher, onClickVideo, onClickChat }) => {
         <ModalConfirm
           callBackConfirm={onClickVideo}
           modalTitle={"Iniciar aula"}
-          modalBody={`O valor dessa aula é R$89 a hora.
-           Após iniciar a chamada, você terá 5 minutos grátis para verificar o seu professor.`}
+          modalBody={`O valor dessa aula é R$ ${teacher.cost} a hora.
+           Após iniciar a chamada, o valor será descontado do seu saldo.`}
         />
       </div>
     </article>
