@@ -104,12 +104,13 @@ const NewUserForm = () => {
               label="Usuário"
               value={userName}
               minLength="4"
+              maxLength="20"
               onChange={(e) => setUserName(e.target.value)}
             />
             <Input
               name="name"
               label="Nome completo"
-              maxLength="200"
+              maxLength="250"
               minLength="5"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -128,6 +129,7 @@ const NewUserForm = () => {
               name="password"
               label="Senha"
               minLength="8"
+              maxLength="80"
               value={password}
               type="password"
               onChange={(e) => setPassword(e.target.value)}
@@ -137,6 +139,7 @@ const NewUserForm = () => {
               name="passwordRepeat"
               label="Repita a senha"
               minLength="8"
+              maxLength="80"
               value={passwordAgain}
               type="password"
               onChange={(e) => setPasswordAgain(e.target.value)}
