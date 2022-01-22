@@ -43,3 +43,14 @@ ServiceConfiguration.configurations.insert({
   appId: "327300232286572",
   secret: "dddcba69cd8f5b7efd52ab0bd50bbe0b",
 });
+
+Accounts.onCreateUser(function (options, user) {
+  console.log("OncreateUser");
+  if (!user.services.facebook) {
+    return user;
+  }
+  user.username = user.services.facebook.name;
+  user.emails = [{ address: user.services.facebook.email }];
+
+  return user;
+});

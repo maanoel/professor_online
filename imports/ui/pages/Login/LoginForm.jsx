@@ -6,8 +6,6 @@ import AlertDanger from "../../components/Alerts/Danger";
 import "./styles.css";
 
 export const LoginForm = () => {
-  //https://preview.colorlib.com/theme/bootstrap/login-form-07/
-
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [messageError, setMessageError] = useState("");
@@ -97,9 +95,6 @@ export const LoginForm = () => {
                         Criar uma conta
                       </a>
                       <br />
-                      <a href="#" className="forgot-pass">
-                        Esqueci minha senha
-                      </a>
                     </span>
                   </div>
                   <input
