@@ -36,10 +36,9 @@ const ProfileForm = () => {
       city: profile.city,
       state: profile.state,
     });
-    
-    window.scrollTo(-1,-1);
-    _setMessageSucess("As informações do seu perfil foram atualizadas.");
 
+    window.scrollTo(-1, -1);
+    _setMessageSucess("As informações do seu perfil foram atualizadas.");
   };
 
   setName = (value) => {
@@ -105,10 +104,10 @@ const ProfileForm = () => {
     }
   };
 
-  function scrollToAlert(){
-    const alertDom = document.querySelector('#sucess-alert');
+  function scrollToAlert() {
+    const alertDom = document.querySelector("#sucess-alert");
 
-    if(alertDom){
+    if (alertDom) {
       alertDom.scrollIntoView();
     }
   }
@@ -158,6 +157,8 @@ const ProfileForm = () => {
                           name="name"
                           label="Nome"
                           defaultValue={p.name}
+                          minLength="5"
+                          maxLength="250"
                           onChange={(e) => setName(e.target.value)}
                         />
                       </div>
@@ -165,6 +166,8 @@ const ProfileForm = () => {
                         <Input
                           name="surname"
                           label="Sobrenome"
+                          maxLength="250"
+                          minLength="5"
                           defaultValue={p.surname}
                           onChange={(e) => setSurName(e.target.value)}
                         />
@@ -175,6 +178,8 @@ const ProfileForm = () => {
                         <Input
                           name="headline"
                           label="Profissão"
+                          minLength="5"
+                          maxLength="200"
                           defaultValue={p.headline}
                           onChange={(e) => setHeadLine(e.target.value)}
                         />
@@ -217,7 +222,6 @@ const ProfileForm = () => {
                           Preencha todos os dados
                         </p>
 
-
                         <a
                           onClick={() => {
                             update();
@@ -229,7 +233,6 @@ const ProfileForm = () => {
                       </footer>
 
                       {showAlert ? <FormSuccess message={alertMessage} /> : ""}
-
                     </article>
                   </div>
                 </div>
